@@ -1,0 +1,13 @@
+command /ah:
+    trigger:
+        open chest inventory with 5 rows named "&6Auction" to player
+        loop 9 times:
+            set slot (loop-number + 26) of player's current inventory to light_blue_stained_glass_pane named " "
+        set slot 10 of player's current inventory to spawner named "GENERATORS"
+        set slot 12 of player's current inventory to diamond_hoe named "TOOLS"
+        set slot 14 of player's current inventory to bundle named "LOOT BOXES"
+        set slot 16 of player's current inventory to potion named "BOOSTS"
+
+        set slot 36 of player's current inventory to black_bundle named "Your old sales"
+        set slot 40 of player's current inventory to bundle named "Your current deals"
+        set slot 44 of player's current inventory to sunflower named "Total earnings"

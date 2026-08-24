@@ -1,0 +1,50 @@
+on join:
+    set {_world} to "island_%player%"
+    if {island::%player%} is not set:
+        add player's uuid to {island::*}
+        set {island::%player%} to {_world}      
+        wait 5 ticks
+        console command "/mv clone template_void island_%player%"
+        execute console command "/mvsetspawn island_%player%:0.5,100,0.5"
+        execute console command "/mv worldborder set 100 0 island_%player%"
+        execute console command "/mv entity-spawn-config modify island_%player% ambient set spawn false"
+        execute console command "/mv entity-spawn-config modify island_%player% animal set spawn false"
+        execute console command "/mv entity-spawn-config modify island_%player% monster set spawn false"
+    else:
+        console command "/mv load island_%player%"
+
+on quit:
+    if world named "island_%player%" exists:
+        wait 1 seconds
+        console command "/mv unload island_%player% --remove-players"
+
+command /island [<text>] [<text>]:
+    aliases: /home
+    trigger:
+        if arg-1 is set:
+            if arg-1 is "delete":
+                if {island::%player%} is set:
+                    set {_world} to {island::%player%}
+                    delete {island::%player%}
+                    remove player's uuid from {island::*}
+
+                    make player execute command "/spawn"
+                    execute console command "/mv unload island_%player%"
+                    wait 1 seconds
+                    console command "/mv delete island_%player% --remove-players"
+                else:
+                    send "&cNemáš žádný ostrov, který by šel smazat." to player
+            if arg-1 is "tp":
+                if arg-2  parsed as a player is online:
+                    console command "/mv tp %player% island_%arg-2% --unsafe"
+                    send "Teleportoval jsi se na island hrace &c%arg-2%" to player
+                else:
+                    send "&cTento hrac neni online" to player
+        else:
+            if {island::%player%} is set:
+                console command "/mv tp %player% island_%player% --unsafe"
+            else:
+                send "&cNemáš žádný ostrov, na ketrý by jsi se mohl teleportovat." to player
+
+
+

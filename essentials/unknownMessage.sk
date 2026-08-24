@@ -1,0 +1,9 @@
+import:
+    org.bukkit.event.command.UnknownCommandEvent
+
+on UnknownCommandEvent:
+    set {_s} to event.getSender()
+    {_s} is a player
+    set event.message to {_}
+    send action bar "&8[&c!&8] &7Sorry, you don't have the required &c&lpermissions&7 to do that." to {_s}
+    play sound "block.note_block.bass" with volume 1 and pitch 1 to {_s}

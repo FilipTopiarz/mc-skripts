@@ -1,0 +1,25 @@
+hoes:
+  wooden:
+    enabled: true
+    item: wooden hoe
+    name: "&7&l[Rookie] &8ʜᴏᴇ"
+  stone:
+    enabled: true
+    item: stone hoe
+    name: "&a&l[Apprentice] &8ʜᴏᴇ"
+  iron:
+    enabled: true
+    item: iron hoe
+    name: "&b&l[Skilled] &8ʜᴏᴇ"
+  golden:
+    enabled: true
+    item: golden hoe
+    name: "&6&l[Expert] &8ʜᴏᴇ"
+  diamond:
+    enabled: true
+    item: diamond hoe
+    name: "&3&l[Master] &8ʜᴏᴇ"
+  netherite:
+    enabled: true
+    item: netherite hoe
+    name: "&4&l[Legendary] &8ʜᴏᴇ"

@@ -1,0 +1,101 @@
+
+function _setGamemode(p: player, gm: text, sender: command sender):
+    set {_gmName} to "&b%{_gm}%"
+    if {_sender} is a player:
+        if {_p} = {_sender}:
+            send ":hexsystem: &7Your gamemode was set to %{_gmName}%&7." to {_sender}
+        else:
+            send ":hexsystem: &7You set &b%{_p}%&7 to %{_gmName}%&7." to {_sender}
+            send ":hexsystem: &7Your gamemode was set to %{_gmName}%&7 by &b%{_sender}%&7." to {_p}
+    else:
+        send "[Console] Set %{_p}% to %{_gmName}%." to console
+
+command /gmc [<offlineplayer>]:
+    permission: essentials.gamemode
+    permission message: ":hexsystem: &cYou don't have permission to use this."
+    usage: "/gmc [player]"
+    trigger:
+        if arg-1 is set:
+            if arg-1 is online:
+                set {_target} to arg-1
+                set {_target}'s gamemode to creative
+                _setGamemode({_target}, "Creative", sender)
+            else:
+                send ":hexsystem: &7Player &b%arg-1%&7 is not &conline!"
+        else:
+            if sender is a player:
+                set player's gamemode to creative
+                _setGamemode(player, "Creative", sender)
+            else:
+                send ":hexsystem: &7Usage: &b/gmc <player>"
+
+command /gms [<offlineplayer>]:
+    permission: essentials.gamemode
+    permission message: ":hexsystem: &cYou don't have permission to use this."
+    usage: "/gms [player]"
+    trigger:
+        if arg-1 is set:
+            if arg-1 is online:
+                set {_target} to arg-1
+                set {_target}'s gamemode to survival
+                _setGamemode({_target}, "Survival", sender)
+            else:
+                send ":hexsystem: &7Player &b%arg-1%&7 is not &conline!"
+        else:
+            if sender is a player:
+                set player's gamemode to survival
+                _setGamemode(player, "Survival", sender)
+            else:
+                send ":hexsystem: &7Usage: &b/gms <player>"
+
+command /gma [<offlineplayer>]:
+    permission: essentials.gamemode
+    permission message: ":hexsystem: &cYou don't have permission to use this."
+    usage: "/gma [player]"
+    trigger:
+        if arg-1 is set:
+            if arg-1 is online:
+                set {_target} to arg-1
+                set {_target}'s gamemode to adventure
+                _setGamemode({_target}, "Adventure", sender)
+            else:
+                send ":hexsystem: &7Player &b%arg-1%&7 is not &conline!"
+        else:
+            if sender is a player:
+                set player's gamemode to adventure
+                _setGamemode(player, "Adventure", sender)
+            else:
+                send ":hexsystem: &7Usage: &b/gma <player>"
+
+command /gmsp [<offlineplayer>]:
+    permission: essentials.gamemode
+    permission message: ":hexsystem: &cYou don't have permission to use this."
+    usage: "/gmsp [player]"
+    trigger:
+        if arg-1 is set:
+            if arg-1 is online:
+                set {_target} to arg-1
+                set {_target}'s gamemode to spectator
+                _setGamemode({_target}, "Spectator", sender)
+            else:
+                send ":hexsystem: &7Player &b%arg-1%&7 is not &conline!"
+        else:
+            if sender is a player:
+                set player's gamemode to spectator
+                _setGamemode(player, "Spectator", sender)
+            else:
+                send ":hexsystem: &7Usage: &b/gmsp <player>"
+
+command /gamemode [<text>]:
+    permission: essentials.gamemode
+    trigger:
+        if arg-1 is "creative":
+            send ":hexsystem: &7Use &b/gmc &7instead"
+        else if arg-1 is "survival":
+            send ":hexsystem: &7Use &b/gms &7instead"
+        else if arg-1 is "adventure":
+            send ":hexsystem: &7Use &b/gma &7instead"
+        else if arg-1 is "spectator":
+            send ":hexsystem: &7Use &b/gmsp &7instead"
+        else:
+            send ":hexsystem: &7Use &b[/gmc, /gms, /gmsp, /gma] &7instead"

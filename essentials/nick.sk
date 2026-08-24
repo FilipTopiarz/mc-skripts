@@ -1,0 +1,15 @@
+placeholderapi placeholder with the prefix "essentials":
+    if the identifier is "nick":
+        set the result to "%{currentnick.%player%}%"
+
+on join:
+    if {currentnick.%player%} is not set:
+        set {currentnick.%player%} to player's name
+
+command /nick [<text>]:
+    trigger:
+        if arg-1 is set:
+            if arg-1 is "off":
+                set {currentnick.%player%} to player's name
+            else:
+                set {currentnick.%player%} to arg-1

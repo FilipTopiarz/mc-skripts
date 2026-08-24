@@ -1,0 +1,31 @@
+options:
+    cooldown: 1 minutes
+
+function gensDaily(p: player):
+    set {_waited} to difference between {dailyRewardv::%{_p}' uuid%} and now
+    if {_waited} is less than {@cooldown}:
+        send "You must wait %difference between {@cooldown} and {_waited}% before claiming your daily reward again." to {_p}
+    else:
+        set {_inv} to chest inventory with 3 rows named "&6&lDaily Rewards"
+        
+        # Vyplnění sklem (dekorace)
+        loop 27 times:
+            set slot (loop-number - 1) of {_inv} to black stained glass pane named "&7"
+        
+        # Nastavení názvů odměn a itemů pro 7 dní
+        set {_items::*} to diamond, emerald, gold ingot, iron ingot, netherite scrap, enchanted golden apple, beacon
+        set {_names::*} to "&bDay 1", "&aDay 2", "&6Day 3", "&fDay 4", "&dDay 5", "&eDay 6", "&cDay 7"
+        set {_slots::*} to 10, 11, 12, 13, 14, 15, 16
+        
+        loop 7 times:
+            set {_day} to loop-number
+            set slot {_slots::%loop-number%} of {_inv} to {_items::%loop-number%} named "%{_names::%loop-number%}%" with lore "&7Click to claim!"
+        
+        open {_inv} to {_p}
+command /daily:
+    trigger:
+        gensDaily(player)
+
+on join:
+    wait 5 seconds
+    gensDaily(player)

@@ -1,0 +1,11 @@
+command /tphere [<offlineplayer>]:
+    permission: essentials.tp
+    trigger:
+        if arg-1 is set:
+            if arg-1 is online:
+                teleport arg-1 to player
+                send ":hexsystem: &7You have teleported &b%arg-1%&7 to you."
+            else:
+                send ":hexsystem: &7Player &b%arg-1%&7 is not &conline!"
+        else:
+            send ":hexsystem: &7Usage: /tp <player>"

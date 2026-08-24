@@ -1,0 +1,15 @@
+command /spy:
+    permission: essentials.spy
+    trigger:
+        if {essentialsSpy::%player's uuid%} is false:
+            set {essentialsSpy::%player's uuid%} to true
+            send ":hexsystem:&7 You have successfully &aEnabled&7 spying" to player
+        else:
+            set {essentialsSpy::%player's uuid%} to false
+            send ":hexsystem:&7 You have successfully &cDisabled&7 spying" to player
+
+on command:
+    loop all players:
+        if {essentialsSpy::%loop-player's uuid%} is true:
+            if player is not loop-player:
+                send "&7Spy &b%player%&7 : /%full command%" to loop-player

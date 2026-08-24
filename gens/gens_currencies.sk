@@ -1,0 +1,105 @@
+#TODO:
+# - Více currencies (Farm_coins, Mine_coins, etc..)
+
+placeholderapi placeholder with the prefix "currency":
+	loop {currencies::*}:
+		if the identifier is "%loop-value%":
+			set the result to customFormatNumber({currency.%loop-value%::%player's uuid%})
+			
+options:
+	prefix: ":hexsystem:"
+	currencies: Money, Credits, FarmCoins, MineCoins
+	
+on load:
+	set {currencies::*} to "Money", "Credits", "FarmCoins" and "MineCoins"
+	
+################################
+#                              #
+#        ON JOIN EVENTS        #
+#                              #
+################################
+	
+on join:
+	loop {currencies::*}:
+		if {currency.%loop-value%::%player's uuid%} is not set:
+			set {currency.%loop-value%::%player's uuid%} to 0
+			
+##############################################
+#                                            #
+#    GLOBÁLNÍ FUNKCE PRO OSTATNÍ SKRIPTY     #
+#                                            #
+##############################################
+			
+function IsCurrencyValid(currency: text) :: boolean:
+	if {currencies::*} contains {_currency}:
+		return true
+	else:
+		return false
+		
+function CheckPlayerCurrency(p: player, currency: text) :: number:
+	if IsCurrencyValid({_currency}):
+		if {currency.%{_currency}%::%{_p}'s uuid%} is not set:
+			set {currency.%{_currency}%::%{_p}'s uuid%} to 0
+		return {currency.%{_currency}%::%{_p}'s uuid%}
+		
+function AddPlayerCurrency(p: player, currency: text, ammount: number):
+	if IsCurrencyValid({_currency}):
+		if {currency.%{_currency}%::%{_p}'s uuid%} is not set:
+			set {currency.%{_currency}%::%{_p}'s uuid%} to 0
+		add {_ammount} to {currency.%{_currency}%::%{_p}'s uuid%}
+		
+function RemovePlayerCurrency(p: player, currency: text, ammount: number):
+	if IsCurrencyValid({_currency}):
+		if {currency.%{_currency}%::%{_p}'s uuid%} is not set:
+			set {currency.%{_currency}%::%{_p}'s uuid%} to 0
+		remove {_ammount} from {currency.%{_currency}%::%{_p}'s uuid%}
+		
+function SetPlayerCurrency(p: player, currency: text, ammount: number):
+	if IsCurrencyValid({_currency}):
+		set {currency.%{_currency}%::%{_p}'s uuid%} to {_ammount}
+		
+function HasEnoughCurrency(p: player, currency: text, ammount: number) :: boolean:
+	if IsCurrencyValid({_currency}):
+		if {currency.%{_currency}%::%{_p}'s uuid%} is not set:
+			set {currency.%{_currency}%::%{_p}'s uuid%} to 0
+		if {currency.%{_currency}%::%{_p}'s uuid%} >= {_ammount}:
+			return true
+		else:
+			return false
+		
+		
+################################
+#                              #
+#           COMMANDY           #
+#                              #
+################################
+		
+command /money:
+	trigger:
+		send customFormatNumber({currency.Money::%player's uuid%})
+		
+command /currencies [<text>] [<text>] [<number>]:
+	trigger:
+		hasPermission(player):
+			if arg-1 is "list":
+				send "%{@prefix}% &7List of all available currencies:" to player
+				loop {currencies::*}:
+					send "• %loop-value%" to player
+			if {currencies::*} contains arg-1:
+				set {_currency} to arg-1 in strict proper case
+				if arg-2 is "set":
+					if arg-3 is set:
+						set {currency.%{_currency}%::%player's uuid%} to arg-3
+						send "%{@prefix}% &b%player%&7 now have &b%customFormatNumber({currency.%{_currency}%::%player's uuid%})%&7 %{_currency}%" to player
+				if arg-2 is "add":
+					if arg-3 is set:
+						add arg-3 to {currency.%{_currency}%::%player's uuid%}
+				if arg-2 is "remove":
+					if arg-3 is set:
+						remove arg-3 from {currency.%{_currency}%::%player's uuid%}
+				if arg-2 is "clear":
+					set {currency.%{_currency}%::%player's uuid%} to 0
+				if arg-1 is "top":
+					loop TopCurrency("Money", 5):
+						set {_split::*} to loop-value.split(":")
+						send "Player UUID: %{_split::1}%, Money: %{_split::2}%" to player

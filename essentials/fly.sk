@@ -1,0 +1,9 @@
+command /fly:
+    permission: essentials.fly
+    trigger:
+        if player can fly:
+            set player's flight mode to false
+            send ":hexsystem:&7 You have &cDisabled&7 fly" to player
+        else:
+            set player's flight mode to true
+            send ":hexsystem:&7 You have &aEnabled&7 fly" to player

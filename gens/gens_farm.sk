@@ -1,0 +1,87 @@
+
+function Farm-openUpgrade(p: player):
+    
+
+
+# Zabránění vyhození motyky
+on drop:
+    if name of event-item contains "motyka":
+        cancel event
+        wait 1 tick
+        send "&6You can't drop spawned items" to player
+
+on right click:
+    if name of tool of player contains "motyka":
+        cancel event
+
+on block trample:
+	if type of event-block is farmland:
+		cancel event
+
+
+command /farm <text> [<text>]:
+    trigger:
+        if arg-1 is "give":
+            if arg-2 is not set:
+                if player has tool:
+                    if name of tool of player contains "motyka":
+                        send "Máš motyku v inventáři!" to player
+                else:
+                    give player unbreakable diamond hoe named "&aSpeciální motyka"
+        if arg-1 is "set":
+            if arg-2 is set:
+                if arg-2 is "wheat":
+                    set {playerFarmSettings::%player's uuid%::block} to wheat[age=7]
+                else:
+                    set {playerFarmSettings::%player's uuid%::block} to arg-2 parsed as item
+
+command /farmsee:
+    trigger:
+        set {_min} to location at 39, 63, -24 in world "farm"
+        set {_max} to location at 89, 72, 30 in world "farm"
+        loop blocks within {_min} and {_max}:
+            if loop-block is farmland:
+                fakeBlock(player, location of block above loop-value)
+
+
+function fakeBlock(p: player, l: location):
+    make {_p} see block at {_l} as {playerFarmSettings::%{_p}'s uuid%::block}
+    set {-setting::%{_p}%::%{_l}%} to true
+
+    
+
+on left click:
+    if player's world is "farm":
+        if player has tool:
+            if name of tool of player contains "motyka":
+                if event-block is air: # you cannot detect the fake block, the mined block is technically air
+                    set {-mined::%player%} to true
+                    make player see block at event-block's location as air
+                    wait 2 seconds
+                    fakeBlock(player, event-block's location)
+                    play sound "entity.item.pickup" at event-block for player
+                    set {_fb} to location 1 meter above block at event-block
+                    make 1 of dust using dustOption(lime, 1) at {_fb} for player
+                else:
+                    cancel event
+        else:
+            cancel event
+
+on block change packet:
+    if player's world is "farm":
+        if {-setting::%player%::%event-location%} is set:
+            delete {-setting::%player%::%event-location%}
+            stop
+
+        if {-mined::%player%} is not set:
+            cancel event
+            stop
+        
+        delete {-mined::%player%}
+
+every 1 second:
+    loop all players:
+        if name of tool of loop-player contains "motyka":
+            set walking speed of loop-player to 1
+        else:
+            set walking speed of loop-player to 0.2

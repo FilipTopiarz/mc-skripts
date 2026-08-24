@@ -1,0 +1,26 @@
+function customFormatNumber(num: number) :: text:
+    set {_units::*} to "Nn", "Oc", "Sp", "Sx", "Qi", "Qa", "T", "B", "M", "K"
+    set {_values::*} to 1000000000000000000000000000, 1000000000000000000000000, 1000000000000000000000, 1000000000000000000, 1000000000000000, 1000000000000, 1000000000000, 1000000000, 1000000, 1000
+
+    loop {_units::*}:
+        set {_i} to loop-index
+        if {_num} >= {_values::%{_i}%}:
+            set {_formatted} to round({_num} / {_values::%{_i}%}, 2)
+            # Odstraníme .00
+            if {_formatted} mod 1 = 0:
+                set {_formatted} to floor({_formatted})
+            return "%{_formatted}%" + loop-value
+
+    # Pokud je číslo menší než 1000
+    set {_num} to round({_num}, 2)
+    if {_num} mod 1 = 0:
+        set {_num} to floor({_num})
+    return "%{_num}%"
+
+
+
+
+
+command /formatnumber <number>:
+    trigger:
+        send customFormatNumber(arg-1) to player

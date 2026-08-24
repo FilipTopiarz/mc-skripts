@@ -1,0 +1,15 @@
+command /msg [<offlineplayer>] [<text>]:
+    permission: essentials.msg
+    aliases: tell, privatemessage, message, pm, dm
+    trigger:
+        if arg-1 is set:
+            if arg-2 is set:
+                if arg-1 is online:
+                    send "&7To &b%arg-1%&7: %arg-2%" to player
+                    send component mini message from "<click:suggest_command:/msg %player% ><hover:show_text:Click and reply to %player%><gray>From <aqua>%player%</aqua>: <gray>%arg-2%</gray>" to arg-1
+                else:
+                    send ":hexsystem: &7Player &b%arg-1%&7 is not &conline!"
+            else:
+                send ":hexsystem: &7Usage: /msg <player> <message>"
+        else:
+            send ":hexsystem: &7Usage: /msg <player> <message>"

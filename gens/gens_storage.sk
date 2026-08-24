@@ -1,0 +1,469 @@
+#TODO:
+# Udelat to ze polozit a znicit pujde jen v jednom svete, jakmile to bdue naapř spawn, tak proste to nebude reagovat na left click a nepůjde to polozit
+# Pocet gens kolik muze uzivatel polozit
+# Na 83 radku (openStorageUpgrades) udelat yaml pro upgrade ikony se scriptem
+
+placeholderapi placeholder with the prefix "storage":
+    if the identifier is "maxCapacity":
+        set the result to "%{maxCapacity::%player's uuid%}%"
+    if the identifier is "currentCapacity":
+        set the result to "%{currentCapacity::%player's uuid%}%"
+
+on join:
+    if {maxCapacity::%player's uuid%} is not set:
+        set {maxCapacity::%player's uuid%} to 100
+    if {currentCapacity::%player's uuid%} is not set:
+        set {currentCapacity::%player's uuid%} to 0
+    if {playerStorage::%player's uuid%} is not set:
+        set {playerStorage::%player's uuid%} to player's uuid
+
+    if {maxstorageplaced::%player's uuid%} is not set:
+        set {maxstorageplaced::%player's uuid%} to 1
+    if {storageplaced::%player's uuid%} is not set:
+        set {storageplaced::%player's uuid%} to 0 
+    
+    if {toggleAutoSell.%player%} is not set:
+        set {toggleAutoSell.%player%} to false
+
+    if {maxGenLevel.%player%} is not set:
+        set {maxGenLevel.%player%} to 1
+    if {maxStorageLevel.%player%} is not set:
+        set {maxStorageLevel.%player%} to 1
+    
+
+on load:
+    load yaml "plugins/Skript/scripts/gens/configs/storageList.yaml" as "storageList"
+    clear {storagelist::*}
+    #loding gens from yaml
+    loop yaml node keys "storage" from "storageList":
+        send "   " to player
+        send "Storage: %loop-key-1%" to player
+        add loop-key-1 to {storagelist::*}
+        loop yaml node keys "storage.%loop-key-1%" from "storageList":
+            set {_key} to "%loop-key-2%"
+            set {_value} to yaml value "%loop-node-2%" from "%loop-id-2%"
+            send "%{_key}%: %{_value}%" to player
+            set {storagelist::%loop-key-1%::%{_key}%} to {_value}
+
+#function placeStorage(n: text, p: player, l: location):
+#    add {_l}'s location to {storageplaced::%{_n}%::%{_p}' uuid%::*}
+#    send "polozil jsi storage lol" to {_p}
+
+function placeStorage(n: text, p: player, l: location):
+    if world "island_%{_p}%" is loaded:
+        if {storageplaced::%{_p}'s uuid%} >= {maxstorageplaced::%{_p}'s uuid%}:
+            getStorage({_n}, {_p})
+            send action bar "&8[&c✘&8] &7You have reached the maximum number of storage blocks! &7(&b%{storageplaced::%{_p}'s uuid%}%&7/%{maxstorageplaced::%{_p}'s uuid%}%)" to {_p}
+            play sound "block.anvil.land" with volume 1 and pitch 1 to {_p}   
+            stop
+        add "%{_l}%" to {allstorageplaced::*}
+        set {allstorageplacedPlayer::%{_l}%-%{_p}'s uuid%} to {_p}'s uuid
+        add 1 to {storageplaced::%{_p}'s uuid%}
+
+#        add {_l}'s location to {storageplaced::%{_p}'s uuid%::%{_n}%::*}
+#        add {_l} to {allstorageplaced::*}
+#        set {allstorageplacedPlayer::%{_l}%} to {_p}'s uuid
+#        add 1 to {storageplaced::%{_p}'s uuid%}
+
+        send action bar "&8[&a✔&8] &7Successfully placed %{storagelist::%{_n}%::name}% &7(&b%{storageplaced::%{_p}'s uuid%}%&7/%{maxstorageplaced::%{_p}'s uuid%}%)" to {_p}
+        play sound "entity.experience_orb.pickup" with volume 1 and pitch 1 to {_p}
+#    set block at {_l} to {storagelist::%{_n}%::item} parsed as item type
+    
+#    draw 10 of smoke particle at {_l} with offset vector(0, 1, 0) to {_p}
+#    set {_ent} to last spawned entity
+#    set gravity of {_ent} to true
+#    set velocity of {_ent} to vector(0,0,0) # normální pád
+
+#function breakStorage(n: text, p: player, l: location) :: boolean:
+#    loop {storageplaced::%{_n}%::%{_p}' uuid%::*}:
+#        if loop-value is {_l}:
+#            send "Znicil jsi storage" to {_p}
+#            remove {_l}'s location from {storagesplaced::%{_n}%::%{_p}' uuid%::*}
+#            getStorage({_n}, {_p})
+#            return true
+#    return false
+
+function breakStorage(n: text, p: player, l: location) :: number:
+    if world "island_%{_p}%" is loaded:
+        loop {allstorageplaced::*}:
+            if loop-value = "%{_l}%":
+                if {allstorageplacedPlayer::%{_l}%-%{_p}'s uuid%} is not set:
+                    send action bar "&8[&c!&8] &7You can only break your own storage!" to {_p}
+                    play sound "block.anvil.land" with volume 1 and pitch 1 to {_p}
+                    return 2
+        if {allstorageplacedPlayer::%{_l}%-%{_p}'s uuid%} is set:
+            remove "%{_l}%" from {allstorageplaced::*}
+            delete {allstorageplacedPlayer::%{_l}%-%{_p}'s uuid%}
+            remove 1 from {storageplaced::%{_p}'s uuid%}
+            send action bar "&8[&a✔&8] &7Successfully taken %{storagelist::%{_n}%::name}% &7(&b%{storageplaced::%{_p}'s uuid%}%&7/%{maxstorageplaced::%{_p}'s uuid%}%)" to {_p}
+            draw 10 of smoke particle at {_l} to {_p}
+            play sound "entity.item.pickup" with volume 1 and pitch 1 to {_p}
+            getStorage({_n}, {_p})
+            return 1
+    else:
+        broadcast "svet neni loaded" 
+    return 3
+
+#        loop {storageplaced::%{_p}'s uuid%::%{_n}%::*}:
+#            if loop-value is {_l}:
+#                remove {_l}'s location from {storageplaced::%{_p}'s uuid%::%{_n}%::*}
+#                remove {_l}'s location from {allstorageplaced::*}
+#                delete {allstorageplacedPlayer::%{_l}%}
+#                remove 1 from {storageplaced::%{_p}'s uuid%}
+#                send action bar "&8[&a✔&8] &7Successfully taken %{storagelist::%{_n}%::name}% &7(&b%{storageplaced::%{_p}'s uuid%}%&7/%{maxstorageplaced::%{_p}'s uuid%}%)" to {_p}
+#                draw 10 of smoke particle at {_l} to {_p}
+#                play sound "entity.item.pickup" with volume 1 and pitch 1 to {_p}
+#                getStorage({_n}, {_p})
+#                return 1
+#        return 3
+
+function openStorage(p: player, pstorage: player): #prvni je ten komu se inv otevre, druhy ten koho to je storage
+    set {_invfullness} to ({currentCapacity::%{_p}'s uuid%} / {maxCapacity::%{_p}'s uuid%}) * 100
+    if {_invfullness} <= 33:
+        set {_invfprfx} to "&a&l" 
+    else if {_invfullness} <= 66:
+        set {_invfprfx} to "&6&l" 
+    else:
+        set {_invfprfx} to "&4&l" 
+    set {_invfsufx} to "&8%% Full"
+
+    set {_openInv} to a chest inventory with 6 rows named "&c&lStorage" #"%{_invfprfx}%%{_invfullness}%%{_invfsufx}% "
+    # Top Border
+    loop 9 times:
+        set slot (loop-number - 1) of {_openInv} to light_blue_stained_glass_pane named " "
+    # Inventory
+
+    set {_i} to 1
+    loop {playerStorage::%{_p}'s uuid%::*}:
+        set {_formattedPrice} to customFormatNumber({playerStorage::%{_p}'s uuid%::%loop-index%::price})
+        set slot ({_i} + 8) of {_openInv} to loop-index parsed as item named "%loop-value%x %loop-index%" with lore "&fSell price: %{_formattedPrice}%"
+        set {_i} to {_i} + 1
+###        send "%loop-index%: %loop-value%"
+#    loop 27 times:
+#        set slot (loop-number + 8) of {_openInv} to structure_void named "&4Locked Item"
+
+    # Fullness bar
+    loop 9 times:
+        if loop-number <= ({_invfullness} / 9):
+            if {_invfullness} <= 33:
+                set slot (loop-number + 35) of {_openInv} to lime_stained_glass_pane named "%{_invfprfx}%%{_invfullness}%%{_invfsufx}%"
+            else if {_invfullness} <= 66:
+                set slot (loop-number + 35) of {_openInv} to orange_stained_glass_pane named "%{_invfprfx}%%{_invfullness}%%{_invfsufx}%"
+            else:
+                set slot (loop-number + 35) of {_openInv} to red_stained_glass_pane named "%{_invfprfx}%%{_invfullness}%%{_invfsufx}%"
+        else:
+            set slot (loop-number + 35) of {_openInv} to light_blue_stained_glass_pane named "%{_invfprfx}%%{_invfullness}%%{_invfsufx}%"
+    # Footer bar
+# UPGRADE    set slot 45 of {_openInv} to paper named "&bPrevious page"
+    if {_pstorage} is {_p}:
+        set slot 48 of {_openInv} to book named "&r&k*** &4Upgrades &r&k***"
+        if {toggleAutoSell.%{_p}%} is false:
+            set slot 49 of {_openInv} to glowing sunflower named "&c&lSELL &c&lEVERYTHING" with lore "Press with right click to toggle", "auto-sell when storage is full", "&6(Only VIP)" and "&4■■"
+        else if {toggleAutoSell.%{_p}%} is true:
+            set slot 49 of {_openInv} to glowing sunflower named "&c&lSELL &c&lEVERYTHING" with lore "Press with right click to toggle", "auto-sell when storage is full", "&6(Only VIP)" and "&a■■"
+    else:
+        set slot 48 of {_openInv} to glowing barrier named "&r&k*** &4&mUpgrades&r &r&k***" with lore "&4&lLocked!"
+        set slot 49 of {_openInv} to glowing barrier named "&c&l&mSELL&r &c&mEVERYTHING" with lore "&4&lLocked!"
+    set slot 50 of {_openInv} to pale_oak_sign named "&4Info" with lore "Owner: %{_pstorage}%" and "Size: %{maxCapacity::%{_pstorage}'s uuid%}%"
+# UPGRADE    set slot 53 of {_openInv} to paper named "&4Next page"
+    open {_openInv} to {_p}
+
+function openStorageUpgrades(p: player, pstorage: player):
+    set {_openInv} to a chest inventory with 3 rows named "&c&lStorage Upgrades"
+
+    # Upgrade slots
+    loop 18 times:
+        if loop-number is 12 or 16:
+            if loop-number is 12:
+                set slot (loop-number - 1) of {_openInv} to skull_banner_pattern named "&c&lUpgrade Storage" with lore "Current max: " and "Current level: " and "Price for upgrade: "
+            else if loop-number is 16:
+                # set {_CurrentPrice} to ({maxGenLevel.%{_pstorage}%} * 100) * 10^%{maxGenLevel.%{_pstorage}%}
+                set {_level} to {maxGenLevel.%{_pstorage}%}
+                set {_CurrentPrice} to ({_level} * 100) * (10 ^ ({_level} - 1) * ((10 ^ ({_level} - 1))))
+                set {_formattedPrice} to customFormatNumber({_CurrentPrice})
+                set slot (loop-number - 1) of {_openInv} to skull_banner_pattern named "&c&lUpgrade Generators" with lore "Current max: %{maxgenplaced::%{_pstorage}'s uuid%}%" and "Current level: %{maxGenLevel.%{_pstorage}%} - 1%" and "Price for upgrade: %{_formattedPrice}%"
+        else:
+            set slot (loop-number - 1) of {_openInv} to gray_stained_glass_pane named " "
+
+    # Footer bar
+    loop 9 times:
+        set slot (loop-number + 17) of {_openInv} to light_blue_stained_glass_pane named " "
+    set slot 22 of {_openInv} to book named "&r&k*** &4Back to Storage &r&k***"
+    open {_openInv} to {_p}
+
+
+function getStorage(storage: text, p: player) :: text:
+    if {storagelist::%{_storage}%::*} is set:
+        set {_text} to "%{storagelist::%{_storage}%::lore}%"
+        replace all "[" with "" in {_text}
+        replace all "]" with "" in {_text}
+        set {_lore::*} to split {_text} at ", "
+        give {_p} "%{storagelist::%{_storage}%::item}%" parsed as item named "%{storagelist::%{_storage}%::name}%" with lore formatted {_lore::*}
+        return "&7Hrac &b%{_p}% &7Dostal storage %{storagelist::%{_storage}%::name}%"
+    else:
+        return "&cThis storage does not exist"
+
+
+command /storageadmin [<text>]:
+    trigger:
+        if arg-1 is set:
+            give player {storage::%arg-1%}
+        else:
+            send "&cNenasel se storage :(" to player
+
+#on place:
+#    loop {storagelist::*}:
+#        set {_storageName} to loop-value
+#        set {_itemType} to "%{storagelist::%{_storageName}%::item}%" parsed as item
+#        set {_itemName} to "%{storagelist::%{_storageName}%::name}%"
+#
+#        if type of player's tool is {_itemType}:
+#            if name of player's tool is {_itemName}:
+#                placeStorage({_storageName}, player, event-block's location)
+#                stop
+
+function isEnabledStorage(storage: text) :: boolean:
+    return {storagelist::%{_storage}%::enabled}
+
+
+on place:
+    if player does not have permission "gens.admin":
+        if name of world of event-block is not "island_%player%":
+            send action bar "&8[&c✘&8] &7Sorry, you don't have permission to &c&lplace blocks&7 here." to player
+            play sound "block.anvil.land" with volume 1 and pitch 1 to player
+            cancel event
+            stop
+    loop {storagelist::*}:
+        set {_storageName} to loop-value
+        set {_itemType} to "%{storagelist::%{_storageName}%::item}%" parsed as item
+        set {_itemName} to "%{storagelist::%{_storageName}%::name}%"
+
+        if type of player's tool is {_itemType}:
+            if name of player's tool is {_itemName}:
+                if {blockcooldown.%player%} is set:
+                    if difference between {blockcooldown.%player%} and now is less than 1 second:
+                        cancel event
+                        send action bar "&8[&c!&8] &7You can place a storage only once every &c1 second&7." to player
+                        play sound "block.anvil.land" with volume 1 and pitch 1 to player
+                        stop
+                set {blockcooldown.%player%} to now
+                if isEnabledStorage({_storageName}):
+#                    if {storageplaced::%player's uuid%} >= {maxstorageplaced::%player's uuid%}:
+#                        cancel event
+#                        send action bar "&8[&c✘&8] &7You have reached the maximum number of storage! &7(&b%{storageplaced::%player's uuid%}%&7/%{maxstorageplaced::%player's uuid%}%)" to player
+#                        play sound "block.anvil.land" with volume 1 and pitch 1 to player
+#                        stop
+#                    else:
+                    remove 1 of player's tool from player's inventory
+                    placeStorage({_storageName}, player, event-block's location)
+#                    cancel event
+                    stop
+                else:
+                    send "%{_itemName}% &7is currently &cdisabled!"
+                    cancel event
+                    stop
+
+on right click:
+    loop {storagelist::*}:
+        set {_storageName} to loop-value
+        set {_itemType} to "%{storagelist::%{_storageName}%::item}%" parsed as item
+
+        if event-block is {_itemType}:
+            #tady kontrola bude te lokace toho bloku
+            # if player's held item is air:
+            # broadcast "%{allstorageplacedPlayer::%event-block's location%-%player's uuid%}%"
+            loop {allstorageplaced::*}:
+                if loop-value-2 is "%event-block's location%":
+                    if {allstorageplacedPlayer::%event-block's location%-%player's uuid%} is player's uuid:
+                        openStorage(player, player)
+                        cancel event
+                    else:
+                        send title "&4&lTHIS IS NOT YOUR STORAGE!" to player for 3 seconds # fadein 1 second fadeout 1 second
+                        cancel event
+#                else:
+#                    if {allstorageplacedPlayer::%event-block's location%} is not player's uuid:
+#                        send title "&4&lTHIS IS NOT YOUR STORAGE!" to player for 3 seconds # fadein 1 second fadeout 1 second
+#                        cancel event
+                    
+
+
+#on left click:
+#    loop {storagelist::*}:
+#        set {_storageName} to loop-value
+#        set {_itemType} to "%{storagelist::%{_storageName}%::item}%" parsed as item
+#
+#        if event-block is {_itemType}:
+#            if breakStorage({_storageName}, player, location of event-block):
+#                set event-block to air
+#            cancel event
+
+on left click:
+    if player does not have permission "gens.admin":
+        if name of world of event-block is not "island_%player%":
+            send action bar "&8[&c✘&8] &7Sorry, you don't have permission to &c&lbreak blocks&7 here." to player
+            play sound "block.anvil.land" with volume 1 and pitch 1 to player
+            cancel event
+            stop
+    loop {storagelist::*}:
+        set {_storageName} to loop-value
+        set {_itemType} to "%{storagelist::%{_storageName}%::item}%" parsed as item
+
+        if event-block is {_itemType}:
+            if breakStorage({_storageName}, player, location of event-block) is 1:
+                set event-block to air
+            else if breakStorage({_storageName}, player, location of event-block) is 2:
+                cancel event
+
+on tab complete of "/storages":
+    if tab argument 1 is set: # první argument
+        if tab argument 1 is "give":
+            set tab completion for position 2 to {storagelist::*}
+            set tab completion for position 3 to all players
+    else:
+        set tab completion for position 1 to "list", "info", "load", "give", "clear"
+
+
+    
+command /storages [<text>] [<text>] [<text>]:
+    usage: /storages <list|info|load|give>
+    trigger:
+        if arg-1 is "list":
+            send "&b&lAll storages:"
+            loop {storagelist::*}:
+                send " "  # prázdný řádek pro oddělení
+                send "&b%loop-value%:"  # název generátoru
+                loop {storagelist::%loop-value%::*}:
+                    if loop-index-2 is "lore":
+                        set {_text} to "%{storagelist::%loop-value-1%::lore}%"
+                        replace all "[" with "" in {_text}
+                        replace all "]" with "" in {_text}
+                        set {_lore::*} to split {_text} at ", "
+                        send formatted "  %loop-index-2%: <tooltip:%{_lore::*}%>&b[lore]<reset>"
+                    else:
+                        send formatted "  %loop-index-2%: %loop-value-2%"
+                    
+                
+        if arg-1 is "info":
+            if arg-2 is set:
+                if {storagelist::%arg-2%::*} is set:
+                    send "&bInfo for storage %arg-2%:"
+                    loop {storagelist::%arg-2%::*}:
+                        send "%loop-index%: %loop-value%"
+                else:
+                    send "&cThis storage does not exist" to player
+            else:
+                send "&cYou must specify a storage name" to player
+
+        if arg-1 is "load":
+            clear {storagelist::*}
+            #loding gens from yaml
+            loop yaml node keys "storage" from "storageList":
+                send "   " to player
+                send "Storage: %loop-key-1%" to player
+                add loop-key-1 to {storagelist::*}
+                loop yaml node keys "storage.%loop-key-1%" from "storageList":
+                    set {_key} to "%loop-key-2%"
+                    set {_value} to yaml value "%loop-node-2%" from "%loop-id-2%"
+                    send "%{_key}%: %{_value}%" to player
+                    set {storagelist::%loop-key-1%::%{_key}%} to {_value}
+        
+        if arg-1 is "give":
+            if arg-2 is set:
+                if arg-3 is set:
+                    if arg-3 parsed as a player is online:
+                        send getStorage(arg-2, arg-3 parsed as a player) to player
+                    else:
+                        send "&cPlayer is not online"
+                else:
+                    send getStorage(arg-2, player) to player
+            else:
+                send "&cYou must specify a storage name" to player
+
+        if arg-1 is "clear":
+            if hasPermission(player):
+#                loop {allstorageplaced::*}:
+#                    set block at loop-value to air
+                delete {allstorageplaced::*}
+                delete {allstorageplacedPlayer::*}
+                loop {storageplaced::*}:
+                    set {storageplaced::%loop-index%} to 0
+                    delete {storageplaced::%loop-index%::*}
+
+                send "&7All storage blocks have been reset. You now have %{storageplaced::%player's uuid%}% storage blocks" to player
+
+#command /StorageWand:
+#    trigger:
+#        if hasPermission(player):
+#            give glowing ominous_trial_key named "Storage opener" with lore "&4&lADMIN ONLY" to player
+
+command /CheckStorage [<player>]:
+    trigger:
+        if hasPermission(player):
+            loop {allstorageplacedPlayer::*}:
+                if loop-value is arg-1's uuid:
+                    set {_target} to arg-1
+                    openStorage(player, {_target})
+                
+command /resetLevel:
+    trigger:
+        if hasPermission(player):
+            set {maxGenLevel.%player%} to 1
+            set {maxgenplaced::%player's uuid%} to 20
+
+
+
+
+on inventory click:
+    if inventory name is "&c&lStorage":
+        cancel event
+        if clicked slot is 48:
+            openStorageUpgrades(player, player)
+        if clicked slot is 49:
+            if name of event-item is "&c&lSELL &c&lEVERYTHING":
+                if click action is right mouse button:
+                    if hasPermission(player):
+                        if {toggleAutoSell.%player%} is false:
+                            set {toggleAutoSell.%player%} to true
+                        else:
+                            set {toggleAutoSell.%player%} to false
+                        broadcast "%{toggleAutoSell.%player%}%"
+                else:
+                    execute player command "/gens sellstorage"
+                openStorage(player, player)
+                
+
+    if inventory name is "&c&lStorage Upgrades":
+        cancel event
+        if clicked slot is 22:
+            openStorage(player, player)
+        if clicked slot is 15:
+            send ":)" to player
+            set {_level} to {maxGenLevel.%player%}
+            send "%{_level}%" to player
+            set {_CurrentPrice} to ({_level} * 100) * (10 ^ ({_level} - 1) * ((10 ^ ({_level} - 1))))
+            send "%{_CurrentPrice}%" to player
+            if HasEnoughCurrency(player, "money", {_CurrentPrice}):
+                RemovePlayerCurrency(player, "money", {_CurrentPrice})
+                set {maxGenLevel.%player%} to {maxGenLevel.%player%} + 1
+                set {maxgenplaced::%player's uuid%} to {maxgenplaced::%player's uuid%} + 1
+            openStorageUpgrades(player, player)
+
+every 5 second:
+    loop all players:
+        if {toggleAutoSell.%loop-player%} is true:
+            if {maxCapacity::%loop-player's uuid%} = {currentCapacity::%loop-player's uuid%}:
+                execute loop-player command "/gens sellstorage"
+                send "Storage has been sold" to loop-player
+
+
+#every 1 second:
+#    loop all players:
+#        set {_uuid} to loop-player's uuid
+#        delete boss bar with id "invfullness"
+#        set {_invfullness.%{_uuid}%} to ({currentCapacity::%{_uuid}%} / {maxCapacity::%{_uuid}%}) * 100
+#        set {_bar} to boss bar with id "invfullness" with title "&4&lStorage is %{_invfullness.%{_uuid}%}% %% full" with color red
+#        remove loop-player from {_bar}
+#        if {_invfullness.%{_uuid}%} >= 70:
+##            set bossbar value of {_bar} to {_invfullness} / 100
+#            add loop-player to {_bar}
+##        else:

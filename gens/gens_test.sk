@@ -1,0 +1,383 @@
+#TODO:
+# Udelat to ze polozit a znicit pujde jen v jednom svete, jakmile to bdue naapř spawn, tak proste to nebude reagovat na left click a nepůjde to polozit
+# Pocet gens kolik muze uzivatel polozit
+# Upgrade okénko při kliknutí pravým na block s shiftem
+
+placeholderapi placeholder with the prefix "gens":
+    if the identifier is "placedGens":
+        set the result to "%{gensplaced::%player's uuid%}%"
+    if the identifier is "maxGens":
+        set the result to "%{maxgenplaced::%player's uuid%}%"
+
+on join:
+    if {maxgenplaced::%player's uuid%} is not set:
+        set {maxgenplaced::%player's uuid%} to 20
+    if {gensplaced::%player's uuid%} is not set:
+        set {gensplaced::%player's uuid%} to 0
+
+on load:
+    loadYaml()
+    clear {genslist::*}
+    #loding gens from yaml
+    loop yaml node keys "gens" from "gensList":
+        send "   " to player
+        send "Generator: %loop-key-1%" to player
+        add loop-key-1 to {genslist::*}
+        loop yaml node keys "gens.%loop-key-1%" from "gensList":
+            set {_key} to "%loop-key-2%"
+            set {_value} to yaml value "%loop-node-2%" from "%loop-id-2%"
+            send "%{_key}%: %{_value}%" to player
+            set {genslist::%loop-key-1%::%{_key}%} to {_value}
+
+function loadYaml():
+    load yaml "plugins/Skript/scripts/gens/configs/gensList.yaml" as "gensList"
+
+function placeGen(n: text, p: player, l: location):
+    if world "island_%{_p}%" is loaded:
+        if {gensplaced::%{_p}'s uuid%} >= {maxgenplaced::%{_p}'s uuid%}:
+            getGen({_n}, {_p})
+            send action bar "&8[&c✘&8] &7You have reached the maximum number of generators! &7(&b%{gensplaced::%{_p}'s uuid%}%&7/%{maxgenplaced::%{_p}'s uuid%}%)" to {_p}
+            play sound "block.anvil.land" with volume 1 and pitch 1 to {_p}   
+            stop
+        add "%{_l}%" to {allgensplaced::*}
+        set {allgensplacedPlayer::%{_l}%-%{_p}'s uuid%} to {_n}
+        add 1 to {gensplaced::%{_p}'s uuid%}
+        send action bar "&8[&a✔&8] &7Successfully placed %{genslist::%{_n}%::name}% &7(&b%{gensplaced::%{_p}'s uuid%}%&7/%{maxgenplaced::%{_p}'s uuid%}%)" to {_p}
+        play sound "entity.experience_orb.pickup" with volume 1 and pitch 1 to {_p}
+        draw 10 of smoke particle at {_l} with offset vector(0, 1, 0) to {_p}
+        spawn falling block of {genslist::%{_n}%::item} parsed as item at {_l} offset by vector(0,0,0)
+        set {_ent} to last spawned entity
+        set gravity of {_ent} to true
+        set velocity of {_ent} to vector(0,0,0) # normální pád
+
+function breakGen(n: text, p: player, l: location) :: number:
+    if world "island_%{_p}%" is loaded:
+        loop {allgensplaced::*}:
+            if loop-value = "%{_l}%":
+                if {allgensplacedPlayer::%{_l}%-%{_p}'s uuid%} is not set:
+                    send action bar "&8[&c!&8] &7You can only break your own generators!" to {_p}
+                    play sound "block.anvil.land" with volume 1 and pitch 1 to {_p}
+                    return 2
+        if {allgensplacedPlayer::%{_l}%-%{_p}'s uuid%} is set:
+            remove "%{_l}%" from {allgensplaced::*}
+            delete {allgensplacedPlayer::%{_l}%-%{_p}'s uuid%}
+            remove 1 from {gensplaced::%{_p}'s uuid%}
+            send action bar "&8[&a✔&8] &7Successfully taken %{genslist::%{_n}%::name}% &7(&b%{gensplaced::%{_p}'s uuid%}%&7/%{maxgenplaced::%{_p}'s uuid%}%)" to {_p}
+            draw 10 of smoke particle at {_l} to {_p}
+            play sound "entity.item.pickup" with volume 1 and pitch 1 to {_p}
+            getGen({_n}, {_p})
+            return 1
+    else:
+        broadcast "svet neni loaded" 
+    return 3
+
+function getGen(gen: text, p: player) :: text:
+    if {genslist::%{_gen}%::*} is set:
+        set {_text} to "%{genslist::%{_gen}%::lore}%"
+        replace all "[" with "" in {_text}
+        replace all "]" with "" in {_text}
+        set {_lore::*} to split {_text} at ", "
+        give {_p} "%{genslist::%{_gen}%::item}%" parsed as item named "%{genslist::%{_gen}%::name}%" with lore formatted {_lore::*}
+        return "&7Hrac &b%{_p}% &7Dostal gen %{genslist::%{_gen}%::name}%"
+    else:
+        return "&cThis gen does not exist"
+
+function upgradeGenMenu(n: text, p: player, l: location) :: boolean:
+    if {allgensplacedPlayer::%{_l}%-%{_p}'s uuid%} is set:
+        set {_upgradeInv} to a chest inventory with 3 rows named "&cɢᴇɴᴇʀᴀᴛᴏʀ &0ᴜᴘɢʀᴀᴅᴇ ᴍᴇɴᴜ"
+        set slot 21 of {_upgradeInv} to paper named "&bPrevious page"
+        set slot 22 of {_upgradeInv} to redstone_block named "&4close"
+        set slot 23 of {_upgradeInv} to paper named "&4Next page"
+        open {_upgradeInv} to {_p}
+        return true
+    return false
+
+function openGenList(p: player):
+    set {_gensToDisplay} to 36
+    set {_page} to {genlist::%{_p}%::page}
+    set {_maxPage} to (size of {genslist::*}) / {_gensToDisplay}
+    if {_page} > {_maxPage}:
+        set {_page} to 2
+        set {genlist::%{_p}%::page} to 2
+    if {_page} <= 0:
+        set {_page} to 1
+        set {genlist::%{_p}%::page} to 1
+
+    set {_listGensInv} to a chest inventory with 6 rows named ":offset_-8::profil:"
+    
+    set {_itemNum} to 0
+
+    set {_startIndex} to ({_page} - 1) * 36
+    set {_endIndex} to {_startIndex} + 35
+    set {_index} to 0
+
+    loop {genslist::*}:
+        if {_index} >= {_startIndex}:
+            if {_index} <= {_endIndex}:
+                set {_text} to "%{genslist::%loop-value%::lore}%"
+                replace all "[" with "" in {_text}
+                replace all "]" with "" in {_text}
+                set {_lore::*} to split {_text} at ", "
+
+                # Projdeme každý řádek lore a nahradíme cenu, pokud začíná "Price:"
+                loop {_lore::*}:
+                    if loop-value-2 contains "Drop item price:":
+                        set {_formattedPrice} to customFormatNumber({genslist::%loop-value-1%::dropitemPrice})
+                        set {_lore::%loop-index-2%} to "&7Item drop price: &b%{_formattedPrice}% Money"
+                    else if loop-value-2 contains "Price:":
+                        set {_formattedPrice} to customFormatNumber({genslist::%loop-value-1%::price})
+                        set {_lore::%loop-index-2%} to "&7Price: &b%{_formattedPrice}% Money"
+
+
+                
+                # Nastavení slotu s itemem a lore
+                set slot {_itemNum} of {_listGensInv} to "%{genslist::%loop-value%::item}%" parsed as item named "%{genslist::%loop-value%::name}%" with lore formatted {_lore::*}
+                add 1 to {_itemNum}
+        add 1 to {_index}
+    open {_listGensInv} to {_p}
+
+
+
+function isGenEnabled(gen: text) :: boolean:
+    return {genslist::%{_gen}%::enabled}
+
+function hasPermission(p: player) ::boolean:
+    if {_p} does not have permission "gens.admin":
+        send action bar "&8[&c!&8] &7Sorry, you don't have the required &c&lpermissions&7 to do that." to {_p}
+        play sound "block.anvil.land" with volume 1 and pitch 1 to {_p}
+        return false
+    return true
+
+function placedGensPlayer(p: player) :: number:
+    set {_total} to 0
+    loop {allgensplacedPlayer::*}:
+        set {_key} to loop-index
+        if {_key} contains "-%{_uuid}%": # nebo jen "%{_uuid}%" podle formátu
+            add 1 to {_total} # celkový počet generátorů
+    return {_total}
+
+
+on place:
+    if player does not have permission "gens.admin":
+        if name of world of event-block is not "island_%player%":
+            send action bar "&8[&c✘&8] &7Sorry, you don't have permission to &c&lplace blocks&7 here." to player
+            play sound "block.anvil.land" with volume 1 and pitch 1 to player
+            cancel event
+            stop
+    loop {genslist::*}:
+        set {_genName} to loop-value
+        set {_itemType} to "%{genslist::%{_genName}%::item}%" parsed as item
+        set {_itemName} to "%{genslist::%{_genName}%::name}%"
+
+        if type of player's tool is {_itemType}:
+            if name of player's tool is {_itemName}:
+                if {blockcooldown.%player%} is set:
+                    if difference between {blockcooldown.%player%} and now is less than 1 second:
+                        cancel event
+                        send action bar "&8[&c!&8] &7You can place a generator only once every &c1 second&7." to player
+                        play sound "block.anvil.land" with volume 1 and pitch 1 to player
+                        stop
+                set {blockcooldown.%player%} to now
+                if isGenEnabled({_genName}):
+                    cancel event
+                    remove 1 of player's tool from player's inventory
+                    placeGen({_genName}, player, event-block's location)
+                    stop
+                else:
+                    send "%{_itemName}% &7is currently &cdisabled!"
+                    cancel event
+                    stop
+
+on right click: 
+    loop {genslist::*}:
+        set {_genName} to loop-value
+        set {_itemType} to "%{genslist::%{_genName}%::item}%" parsed as item
+
+        if event-block is {_itemType}:
+            if player's held item is air:
+                player is sneaking
+                upgradeGenMenu({_genName}, player, location of event-block)
+                cancel event
+
+on left click:
+    if player does not have permission "gens.admin":
+        if name of world of event-block is not "island_%player%":
+            send action bar "&8[&c✘&8] &7Sorry, you don't have permission to &c&lbreak blocks&7 here." to player
+            play sound "block.anvil.land" with volume 1 and pitch 1 to player
+            cancel event
+            stop
+    loop {genslist::*}:
+        set {_genName} to loop-value
+        set {_itemType} to "%{genslist::%{_genName}%::item}%" parsed as item
+
+        if event-block is {_itemType}:
+            if breakGen({_genName}, player, location of event-block) is 1:
+                set event-block to air
+            else if breakGen({_genName}, player, location of event-block) is 2:
+                cancel event
+
+on tab complete of "/gens":
+    if tab argument 1 is set: # první argument
+        if tab argument 1 is "give":
+            set tab completion for position 2 to {genslist::*}
+            set tab completion for position 3 to all players
+        if tab argument 1 is "enable" or "disable":
+            set tab completion for position 2 to {genslist::*}
+    else:
+        set tab completion for position 1 to "list", "info", "load", "give", "enable" and "disable"
+
+
+    
+command /gens [<text>] [<text>] [<text>]:
+    usage: /gens <list|info|load|give>
+    trigger:
+        if arg-1 is "list":
+            openGenList(player)
+                    
+        #
+        #        ADMIN COMMANDS 
+        #   
+        if arg-1 is "info":
+            if hasPermission(player):
+                if arg-2 is set:
+                    if {genslist::%arg-2%::*} is set:
+                        send "&bInfo for generator %arg-2%:"
+                        loop {genslist::%arg-2%::*}:
+                            send "%loop-index%: %loop-value%"
+                    else:
+                        send "&cThis gen does not exist" to player
+                else:
+                    send "&cYou must specify a generator name" to player
+
+        if arg-1 is "load":
+            if hasPermission(player):
+                clear {genslist::*}
+                #loding gens from yaml
+                loop yaml node keys "gens" from "gensList":
+                    send "   " to player
+                    send "Generator: %loop-key-1%" to player
+                    add loop-key-1 to {genslist::*}
+                    loop yaml node keys "gens.%loop-key-1%" from "gensList":
+                        set {_key} to "%loop-key-2%"
+                        set {_value} to yaml value "%loop-node-2%" from "%loop-id-2%"
+                        send "%{_key}%: %{_value}%" to player
+                        set {genslist::%loop-key-1%::%{_key}%} to {_value}
+        
+        if arg-1 is "give":
+            if hasPermission(player):
+                if arg-2 is set:
+                    if arg-3 is set:
+                        if arg-3 parsed as a player is online:
+                            send getGen(arg-2, arg-3 parsed as a player) to player
+                        else:
+                            send "&cPlayer is not online"
+                    else:
+                        send getGen(arg-2, player) to player
+                else:
+                    send "&cYou must specify a generator name" to player
+
+        if arg-1 is "disable":
+            if hasPermission(player):
+                if arg-2 is set:
+                    if {genslist::%arg-2%::*} is set:
+                        set yaml value "gens.%arg-2%.enabled" from "gensList" to false
+                        set {genslist::%arg-2%::enabled} to false
+                        save yaml "gensList"
+                        send "&7Succesfully &cdisabled&7 %arg-2% generator"
+                    else:
+                        send "&cThis gen does not exist" to player
+                else:
+                    send "&cYou must specify a generator name" to player
+
+        if arg-1 is "enable":
+            if hasPermission(player):
+                if arg-2 is set:
+                    if {genslist::%arg-2%::*} is set:
+                        set yaml value "gens.%arg-2%.enabled" from "gensList" to true
+                        set {genslist::%arg-2%::enabled} to true
+                        save yaml "gensList"
+                        send "&7Succesfully &aenabled&7 %arg-2% generator"
+                    else:
+                        send "&cThis gen does not exist" to player
+                else:
+                    send "&cYou must specify a generator name" to player
+        
+        if arg-1 is "clear":
+            if hasPermission(player):
+                loop {allgensplaced::*}:
+                    set block at loop-value to air #nefunguje ted 
+                delete {allgensplaced::*}
+                delete {allgensplacedPlayer::*}
+                loop {gensplaced::*}:
+                    set {gensplaced::%loop-index%} to 0
+                    delete {gensplaced::%loop-index%::*}
+
+                send "&7All generators have been reset. You now have %{gensplaced::%player's uuid%}% generators" to player
+
+
+        if arg-1 is "showStorage":
+            send "list of player storage:"
+            loop {playerStorage::%player's uuid%::*}:
+                send "%loop-index%: %loop-value%"
+        if arg-1 is "sellStorage":
+            set {_itemsValue} to 0
+            loop {playerStorage::%player's uuid%::*}:
+                set {_price} to {playerStorage::%player's uuid%::%loop-index%::price} * loop-value
+                add {_price} to {_itemsValue}
+            delete {playerStorage::%player's uuid%::*}
+            set {currentCapacity::%player's uuid%} to 0
+            AddPlayerCurrency(player, "money", {_price})
+            send "prodal jsi to za: %{_itemsValue}% money" to player
+
+# Inventory checks
+on inventory click:
+    if name of event-inventory contains ":offset_-8::profil:":
+        cancel event
+        set {_slotsGenListPrevious::*} to 36, 37, 38, 45, 46, 47
+        set {_slotsGenListNext::*} to 42, 43, 44,51, 52, 53
+        if {_slotsGenListNext::*} contains clicked slot:
+            add 1 to {genlist::%player%::page}
+            openGenList(player)
+        if {_slotsGenListPrevious::*} contains clicked slot:
+            remove 1 from {genlist::%player%::page}
+            openGenList(player)
+
+
+every 5 seconds:
+    loop all players:
+        if world "island_%loop-player%" is loaded:
+            if {storageplaced::%loop-player's uuid%} is 1:
+                delete boss bar with id "%loop-player%"
+                if loop-player's world is "island_%loop-player%":
+                    loop {allgensplacedPlayer::*}:
+                        if loop-index contains "-%loop-player's uuid%":
+                            if ({currentCapacity::%loop-player's uuid%} + 1) <= {maxCapacity::%loop-player's uuid%}:
+                                add 1 to {playerStorage::%loop-player's uuid%::%{genslist::%loop-value-2%::dropitem}%}
+                                set {playerStorage::%loop-player's uuid%::%{genslist::%loop-value-2%::dropitem}%::price} to {genslist::%loop-value-2%::dropitemPrice}
+                                add 1 to {currentCapacity::%loop-player's uuid%}
+                            else:
+                                stop loop
+                    set {_percetageOfFullness} to ({currentCapacity::%loop-player's uuid%} / {maxCapacity::%loop-player's uuid%}) * 100
+                    if {_percetageOfFullness} > 70:
+                        set {_bar} to boss bar with id "%loop-player%" with title "&cYour storage is %{_percetageOfFullness}%%% full" with color red with progress {_percetageOfFullness}
+                        add loop-player to {_bar}
+
+
+command /test [<player>]:
+    trigger:
+        if arg-1 is not set:
+            send "&cPoužití: /test <hráč>"
+            stop
+        set {_uuid} to "%arg-1's uuid%"
+        set {_total} to placedGensPlayer({_uuid})
+        clear {_types::*}
+        
+        loop {allgensplacedPlayer::*}:
+            set {_key} to loop-index
+            if {_key} contains "-%{_uuid}%": # nebo jen "%{_uuid}%" podle formátu
+                add 1 to {_total} # celkový počet generátorů
+                add 1 to {_types::%loop-value%} # loop-value = typ generátoru
+
+        send "&7Hráč &e%arg-1% &7má celkem &a%{_total}% &7generátorů:"
+        loop {_types::*}:
+            send " &8- &e%loop-index%: &a%loop-value%"

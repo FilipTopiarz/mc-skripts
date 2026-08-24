@@ -1,0 +1,33 @@
+command /spawn:
+    trigger:
+        if {essentials.spawn} is set:
+            teleport player to {essentials.spawn}
+            send ":hexsystem:&7 You have been teleported to spawn"
+        else:
+            send ":hexsystem:&7 Spawn is not set!"
+
+command /setspawn:
+    permission: essentials.setspawn
+    trigger:
+        if {essentials.spawn} is not set:
+            set {essentials.spawn} to location of player
+            send ":hexsystem: &aSuccessfully&7 created spawn!"
+        else:
+            send ":hexsystem:&7 Spawn is already created!"
+
+command /delspawn:
+    permission: essentials.delspawn
+    trigger:
+        if {essentials.spawn} is set:
+            delete {essentials.spawn}
+            send ":hexsystem:&7 You have &asuccessfully&7 deleted spawn!"
+        else:
+            send ":hexsystem:&7 Spawn is not set!"
+
+on join:
+    if {essentials.spawn} is set:
+        teleport player to {essentials.spawn}
+
+on first join:
+    if {essentials.spawn} is set:
+        teleport player to {essentials.spawn}

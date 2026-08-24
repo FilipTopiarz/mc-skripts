@@ -1,0 +1,1364 @@
+gens:
+  dirt:
+    enabled: true
+    item: dirt
+    name: "&7&lDirt &8ɢᴇɴᴇʀᴀᴛᴏʀ"
+    permission: ""
+    price: 10
+    lore:
+      - " "
+      - "&b✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦"
+      - " "
+      - "&8&lGENERATOR"
+      - "&7Generates items automatically"
+      - "&7Obtainable by upgrading generators"
+      - " "
+      - "&7Item: &bDirt"
+      - "&7Price: "
+      - "&7Drop item price: "
+      - " "
+      - "&b✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦"
+      - " "
+    dropitem: dirt
+    dropitemPrice: 1
+  sand:
+    enabled: true
+    item: sand
+    name: "&e&lSand &8ɢᴇɴᴇʀᴀᴛᴏʀ"
+    permission: ""
+    price: 50
+    lore:
+      - " "
+      - "&b✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦"
+      - " "
+      - "&8&lGENERATOR"
+      - "&7Generates items automatically"
+      - "&7Obtainable by upgrading generators"
+      - " "
+      - "&7Item: &bSand"
+      - "&7Price: "
+      - "&7Drop item price: "
+      - " "
+      - "&b✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦"
+      - " "
+    dropitem: sand
+    dropitemPrice: 3
+  gravel:
+    enabled: true
+    item: gravel
+    name: "&7&lGravel &8ɢᴇɴᴇʀᴀᴛᴏʀ"
+    permission: ""
+    price: 275
+    lore:
+      - " "
+      - "&b✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦"
+      - " "
+      - "&8&lGENERATOR"
+      - "&7Generates items automatically"
+      - "&7Obtainable by upgrading generators"
+      - " "
+      - "&7Item: &bGravel"
+      - "&7Price: "
+      - "&7Drop item price: "
+      - " "
+      - "&b✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦"
+      - " "
+    dropitem: gravel
+    dropitemPrice: 17
+  cobblestone:
+    enabled: true
+    item: cobblestone
+    name: "&8&lCobblestone &8ɢᴇɴᴇʀᴀᴛᴏʀ"
+    permission: ""
+    price: 550
+    lore:
+      - " "
+      - "&b✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦"
+      - " "
+      - "&8&lGENERATOR"
+      - "&7Generates items automatically"
+      - "&7Obtainable by upgrading generators"
+      - " "
+      - "&7Item: &bCobblestone"
+      - "&7Price: "
+      - "&7Drop item price: "
+      - " "
+      - "&b✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦"
+      - " "
+    dropitem: cobblestone
+    dropitemPrice: 30
+  stone:
+    enabled: true
+    item: stone
+    name: "&7&lStone &8ɢᴇɴᴇʀᴀᴛᴏʀ"
+    permission: ""
+    price: 800
+    lore:
+      - " "
+      - "&b✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦"
+      - " "
+      - "&8&lGENERATOR"
+      - "&7Generates items automatically"
+      - "&7Obtainable by upgrading generators"
+      - " "
+      - "&7Item: &bStone"
+      - "&7Price: "
+      - "&7Drop item price: "
+      - " "
+      - "&b✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦"
+      - " "
+    dropitem: stone
+    dropitemPrice: 45
+  oak_log:
+    enabled: true
+    item: oak_log
+    name: "&6&lOak &8ɢᴇɴᴇʀᴀᴛᴏʀ"
+    permission: ""
+    price: 2500
+    lore:
+      - " "
+      - "&b✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦"
+      - " "
+      - "&8&lGENERATOR"
+      - "&7Generates items automatically"
+      - "&7Obtainable by upgrading generators"
+      - " "
+      - "&7Item: &bOak Log"
+      - "&7Price: "
+      - "&7Drop item price: "
+      - " "
+      - "&b✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦"
+      - " "
+    dropitem: oak_log
+    dropitemPrice: 75
+  spruce_log:
+    enabled: true
+    item: spruce_log
+    name: "&2&lSpruce &8ɢᴇɴᴇʀᴀᴛᴏʀ"
+    permission: ""
+    price: 5500
+    lore:
+      - " "
+      - "&b✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦"
+      - " "
+      - "&8&lGENERATOR"
+      - "&7Generates items automatically"
+      - "&7Obtainable by upgrading generators"
+      - " "
+      - "&7Item: &bSpruce Log"
+      - "&7Price: "
+      - "&7Drop item price: "
+      - " "
+      - "&b✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦"
+      - " "
+    dropitem: spruce_log
+    dropitemPrice: 110
+  birch_log:
+    enabled: true
+    item: birch_log
+    name: "&f&lBirch &8ɢᴇɴᴇʀᴀᴛᴏʀ"
+    permission: ""
+    price: 11000
+    lore:
+      - " "
+      - "&b✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦"
+      - " "
+      - "&8&lGENERATOR"
+      - "&7Generates items automatically"
+      - "&7Obtainable by upgrading generators"
+      - " "
+      - "&7Item: &bBirch Log"
+      - "&7Price: "
+      - "&7Drop item price: "
+      - " "
+      - "&b✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦"
+      - " "
+    dropitem: birch_log
+    dropitemPrice: 175
+  jungle_log:
+    enabled: true
+    item: jungle_log
+    name: "&a&lJungle &8ɢᴇɴᴇʀᴀᴛᴏʀ"
+    permission: ""
+    price: 35000
+    lore:
+      - " "
+      - "&b✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦"
+      - " "
+      - "&8&lGENERATOR"
+      - "&7Generates items automatically"
+      - "&7Obtainable by upgrading generators"
+      - " "
+      - "&7Item: &bJungle Log"
+      - "&7Price: "
+      - "&7Drop item price: "
+      - " "
+      - "&b✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦"
+      - " "
+    dropitem: jungle_log
+    dropitemPrice: 275
+  acacia_log:
+    enabled: true
+    item: acacia_log
+    name: "&6&lAcacia &8ɢᴇɴᴇʀᴀᴛᴏʀ"
+    permission: ""
+    price: 80000
+    lore:
+      - " "
+      - "&b✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦"
+      - " "
+      - "&8&lGENERATOR"
+      - "&7Generates items automatically"
+      - "&7Obtainable by upgrading generators"
+      - " "
+      - "&7Item: &bAcacia Log"
+      - "&7Price: "
+      - "&7Drop item price: "
+      - " "
+      - "&b✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦"
+      - " "
+    dropitem: acacia_log
+    dropitemPrice: 850
+  dark_oak_log:
+    enabled: true
+    item: dark_oak_log
+    name: "&4&lDark Oak &8ɢᴇɴᴇʀᴀᴛᴏʀ"
+    permission: ""
+    price: 170000
+    lore:
+      - " "
+      - "&b✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦"
+      - " "
+      - "&8&lGENERATOR"
+      - "&7Generates items automatically"
+      - "&7Obtainable by upgrading generators"
+      - " "
+      - "&7Item: &bDark Oak Log"
+      - "&7Price: "
+      - "&7Drop item price: "
+      - " "
+      - "&b✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦"
+      - " "
+    dropitem: dark_oak_log
+    dropitemPrice: 1300
+  coal_ore:
+    enabled: true
+    item: coal_ore
+    name: "&8&lCoal &8ɢᴇɴᴇʀᴀᴛᴏʀ"
+    permission: ""
+    price: 345000
+    lore:
+      - " "
+      - "&b✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦"
+      - " "
+      - "&8&lGENERATOR"
+      - "&7Generates items automatically"
+      - "&7Obtainable by upgrading generators"
+      - " "
+      - "&7Item: &bCoal"
+      - "&7Price: "
+      - "&7Drop item price: "
+      - " "
+      - "&b✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦"
+      - " "
+    dropitem: coal
+    dropitemPrice: 2550
+  iron_ore:
+    enabled: true
+    item: iron_ore
+    name: "&7&lIron &8ɢᴇɴᴇʀᴀᴛᴏʀ"
+    permission: ""
+    price: 875000
+    lore:
+      - " "
+      - "&b✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦"
+      - " "
+      - "&8&lGENERATOR"
+      - "&7Generates items automatically"
+      - "&7Obtainable by upgrading generators"
+      - " "
+      - "&7Item: &bIron Ore"
+      - "&7Price: "
+      - "&7Drop item price: "
+      - " "
+      - "&b✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦"
+      - " "
+    dropitem: iron_ore
+    dropitemPrice: 6750
+  gold_ore:
+    enabled: true
+    item: gold_ore
+    name: "&6&lGold &8ɢᴇɴᴇʀᴀᴛᴏʀ"
+    permission: ""
+    price: 20000000
+    lore:
+      - " "
+      - "&b✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦"
+      - " "
+      - "&8&lGENERATOR"
+      - "&7Generates items automatically"
+      - "&7Obtainable by upgrading generators"
+      - " "
+      - "&7Item: &bGold Ore"
+      - "&7Price: "
+      - "&7Drop item price: "
+      - " "
+      - "&b✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦"
+      - " "
+    dropitem: gold_ore
+    dropitemPrice: 100000
+  lapis_ore:
+    enabled: true
+    item: lapis_ore
+    name: "&9&lLapis &8ɢᴇɴᴇʀᴀᴛᴏʀ"
+    permission: ""
+    price: 4500000
+    lore:
+      - " "
+      - "&b✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦"
+      - " "
+      - "&8&lGENERATOR"
+      - "&7Generates items automatically"
+      - "&7Obtainable by upgrading generators"
+      - " "
+      - "&7Item: &bLapis Ore"
+      - "&7Price: "
+      - "&7Drop item price: "
+      - " "
+      - "&b✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦"
+      - " "
+    dropitem: lapis_lazuli
+    dropitemPrice: 17500
+  redstone_ore:
+    enabled: true
+    item: redstone_ore
+    name: "&c&lRedstone &8ɢᴇɴᴇʀᴀᴛᴏʀ"
+    permission: ""
+    price: 9750000
+    lore:
+      - " "
+      - "&b✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦"
+      - " "
+      - "&8&lGENERATOR"
+      - "&7Generates items automatically"
+      - "&7Obtainable by upgrading generators"
+      - " "
+      - "&7Item: &bRedstone Ore"
+      - "&7Price: "
+      - "&7Drop item price: "
+      - " "
+      - "&b✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦"
+      - " "
+    dropitem: redstone
+    dropitemPrice: 25500
+  emerald_ore:
+    enabled: true
+    item: emerald_ore
+    name: "&a&lEmerald &8ɢᴇɴᴇʀᴀᴛᴏʀ"
+    permission: ""
+    price: 2100000
+    lore:
+      - " "
+      - "&b✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦"
+      - " "
+      - "&8&lGENERATOR"
+      - "&7Generates items automatically"
+      - "&7Obtainable by upgrading generators"
+      - " "
+      - "&7Item: &bEmerald Ore"
+      - "&7Price: "
+      - "&7Drop item price: "
+      - " "
+      - "&b✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦"
+      - " "
+    dropitem: emerald
+    dropitemPrice: 37500
+  coal_block:
+    enabled: true
+    item: coal_block
+    name: "&8&lCoal Block &8ɢᴇɴᴇʀᴀᴛᴏʀ"
+    permission: ""
+    price: 3750000
+    lore:
+      - " "
+      - "&b✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦"
+      - " "
+      - "&8&lGENERATOR"
+      - "&7Generates blocks automatically"
+      - "&7Upgrade from Coal Ore Generator"
+      - " "
+      - "&7Item: &bCoal Block"
+      - "&7Price: "
+      - "&7Drop item price: "
+      - " "
+      - "&b✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦"
+      - " "
+    dropitem: coal_block
+    dropitemPrice: 55000
+  iron_block:
+    enabled: true
+    item: iron_block
+    name: "&7&lIron Block &8ɢᴇɴᴇʀᴀᴛᴏʀ"
+    permission: ""
+    price: 7500000
+    lore:
+      - " "
+      - "&b✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦"
+      - " "
+      - "&8&lGENERATOR"
+      - "&7Generates blocks automatically"
+      - "&7Upgrade from Iron Ore Generator"
+      - " "
+      - "&7Item: &bIron Block"
+      - "&7Price: "
+      - "&7Drop item price: "
+      - " "
+      - "&b✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦"
+      - " "
+    dropitem: iron_block
+    dropitemPrice: 85000
+  gold_block:
+    enabled: true
+    item: gold_block
+    name: "&6&lGold Block &8ɢᴇɴᴇʀᴀᴛᴏʀ"
+    permission: ""
+    price: 115000000
+    lore:
+      - " "
+      - "&b✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦"
+      - " "
+      - "&8&lGENERATOR"
+      - "&7Generates blocks automatically"
+      - "&7Upgrade from Gold Ore Generator"
+      - " "
+      - "&7Item: &bGold Block"
+      - "&7Price: "
+      - "&7Drop item price: "
+      - " "
+      - "&b✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦"
+      - " "
+    dropitem: gold_block
+    dropitemPrice: 115000
+  lapis_block:
+    enabled: true
+    item: lapis_block
+    name: "&9&lLapis Block &8ɢᴇɴᴇʀᴀᴛᴏʀ"
+    permission: ""
+    price: 225000000
+    lore:
+      - " "
+      - "&b✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦"
+      - " "
+      - "&8&lGENERATOR"
+      - "&7Generates blocks automatically"
+      - "&7Upgrade from Lapis Ore Generator"
+      - " "
+      - "&7Item: &bLapis Block"
+      - "&7Price: "
+      - "&7Drop item price: "
+      - " "
+      - "&b✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦"
+      - " "
+    dropitem: lapis_block
+    dropitemPrice: 275000
+  redstone_block:
+    enabled: true
+    item: redstone_block
+    name: "&c&lRedstone Block &8ɢᴇɴᴇʀᴀᴛᴏʀ"
+    permission: ""
+    price: 375000000
+    lore:
+      - " "
+      - "&b✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦"
+      - " "
+      - "&8&lGENERATOR"
+      - "&7Generates blocks automatically"
+      - "&7Upgrade from Redstone Ore Generator"
+      - " "
+      - "&7Item: &bRedstone Block"
+      - "&7Price: "
+      - "&7Drop item price: "
+      - " "
+      - "&b✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦"
+      - " "
+    dropitem: redstone_block
+    dropitemPrice: 335000
+  emerald_block:
+    enabled: true
+    item: emerald_block
+    name: "&a&lEmerald Block &8ɢᴇɴᴇʀᴀᴛᴏʀ"
+    permission: ""
+    price: 550000000
+    lore:
+      - " "
+      - "&b✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦"
+      - " "
+      - "&8&lGENERATOR"
+      - "&7Generates blocks automatically"
+      - "&7Upgrade from Emerald Ore Generator"
+      - " "
+      - "&7Item: &bEmerald Block"
+      - "&7Price: "
+      - "&7Drop item price: "
+      - " "
+      - "&b✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦"
+      - " "
+    dropitem: emerald_block
+    dropitemPrice: 50000
+  diamond_ore:
+    enabled: true
+    item: diamond_ore
+    name: "&b&lDiamond &8ɢᴇɴᴇʀᴀᴛᴏʀ"
+    permission: ""
+    price: 885000000
+    lore:
+      - " "
+      - "&b✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦"
+      - " "
+      - "&8&lGENERATOR"
+      - "&7Generates items automatically"
+      - "&7Obtainable by upgrading generators"
+      - " "
+      - "&7Item: &bDiamond Ore"
+      - "&7Price: "
+      - "&7Drop item price: "
+      - " "
+      - "&b✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦"
+      - " "
+    dropitem: diamond
+    dropitemPrice: 750000
+  diamond_block:
+    enabled: true
+    item: diamond_block
+    name: "&b&lDiamond Block &8ɢᴇɴᴇʀᴀᴛᴏʀ"
+    permission: ""
+    price: 1500000000
+    lore:
+      - " "
+      - "&b✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦"
+      - " "
+      - "&8&lGENERATOR"
+      - "&7Generates blocks automatically"
+      - "&7Upgrade from Diamond Ore Generator"
+      - " "
+      - "&7Item: &bDiamond Block"
+      - "&7Price: "
+      - "&7Drop item price: "
+      - " "
+      - "&b✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦"
+      - " "
+    dropitem: diamond_block
+    dropitemPrice: 1150000
+  netherite_block:
+    enabled: true
+    item: netherite_block
+    name: "&8&lNetherite Block &8ɢᴇɴᴇʀᴀᴛᴏʀ"
+    permission: ""
+    price: 2750000000
+    lore:
+      - " "
+      - "&b✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦"
+      - " "
+      - "&8&lGENERATOR"
+      - "&7Generates blocks automatically"
+      - "&7Upgrade from Diamond Block Generator"
+      - " "
+      - "&7Item: &bNetherite Block"
+      - "&7Price: "
+      - "&7Drop item price: "
+      - " "
+      - "&b✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦"
+      - " "
+    dropitem: netherite_block
+    dropitemPrice: 1950000
+  obsidian:
+    enabled: true
+    item: obsidian
+    name: "&5&lObsidian &8ɢᴇɴᴇʀᴀᴛᴏʀ"
+    permission: ""
+    price: 5500000000
+    lore:
+      - " "
+      - "&b✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦"
+      - " "
+      - "&8&lGENERATOR"
+      - "&7Generates blocks automatically"
+      - "&7Obtainable by upgrading generators"
+      - " "
+      - "&7Item: &bObsidian"
+      - "&7Price: "
+      - "&7Drop item price: "
+      - " "
+      - "&b✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦"
+      - " "
+    dropitem: obsidian
+    dropitemPrice: 4500000
+  quartz_block:
+    enabled: true
+    item: quartz_block
+    name: "&f&lQuartz Block &8ɢᴇɴᴇʀᴀᴛᴏʀ"
+    permission: ""
+    price: 7750000000
+    lore:
+      - " "
+      - "&b✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦"
+      - " "
+      - "&8&lGENERATOR"
+      - "&7Generates blocks automatically"
+      - "&7Obtainable by upgrading generators"
+      - " "
+      - "&7Item: &bQuartz Block"
+      - "&7Price: "
+      - "&7Drop item price: "
+      - " "
+      - "&b✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦"
+      - " "
+    dropitem: quartz_block
+    dropitemPrice: 6750000
+  slime_block:
+    enabled: true
+    item: slime_block
+    name: "&a&lSlime Block &8ɢᴇɴᴇʀᴀᴛᴏʀ"
+    permission: ""
+    price: 11500000000
+    lore:
+      - " "
+      - "&b✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦"
+      - " "
+      - "&8&lGENERATOR"
+      - "&7Generates blocks automatically"
+      - "&7Obtainable by upgrading generators"
+      - " "
+      - "&7Item: &bSlime Block"
+      - "&7Price: "
+      - "&7Drop item price: "
+      - " "
+      - "&b✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦"
+      - " "
+    dropitem: slime_block
+    dropitemPrice: 9000000
+  honey_block:
+    enabled: true
+    item: honey_block
+    name: "&6&lHoney Block &8ɢᴇɴᴇʀᴀᴛᴏʀ"
+    permission: ""
+    price: 35500000000
+    lore:
+      - " "
+      - "&b✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦"
+      - " "
+      - "&8&lGENERATOR"
+      - "&7Generates blocks automatically"
+      - "&7Obtainable by upgrading generators"
+      - " "
+      - "&7Item: &bHoney Block"
+      - "&7Price: "
+      - "&7Drop item price: "
+      - " "
+      - "&b✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦"
+      - " "
+    dropitem: honey_block
+    dropitemPrice: 23500000
+  pumpkin:
+    enabled: true
+    item: pumpkin
+    name: "&6&lPumpkin &8ɢᴇɴᴇʀᴀᴛᴏʀ"
+    permission: ""
+    price: 65500000000
+    lore:
+      - " "
+      - "&b✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦"
+      - " "
+      - "&8&lGENERATOR"
+      - "&7Generates items automatically"
+      - "&7Obtainable by upgrading generators"
+      - " "
+      - "&7Item: &bPumpkin"
+      - "&7Price: "
+      - "&7Drop item price: "
+      - " "
+      - "&b✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦"
+      - " "
+    dropitem: pumpkin
+    dropitemPrice: 55000000
+  melon:
+    enabled: true
+    item: melon
+    name: "&a&lMelon &8ɢᴇɴᴇʀᴀᴛᴏʀ"
+    permission: ""
+    price: 95000000000
+    lore:
+      - " "
+      - "&b✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦"
+      - " "
+      - "&8&lGENERATOR"
+      - "&7Generates items automatically"
+      - "&7Obtainable by upgrading generators"
+      - " "
+      - "&7Item: &bMelon"
+      - "&7Price: "
+      - "&7Drop item price: "
+      - " "
+      - "&b✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦"
+      - " "
+    dropitem: melon
+    dropitemPrice: 8750000
+  moss_block:
+    enabled: true
+    item: moss_block
+    name: "&2&lMoss Block &8ɢᴇɴᴇʀᴀᴛᴏʀ"
+    permission: ""
+    price: 215000000000
+    lore:
+      - " "
+      - "&b✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦"
+      - " "
+      - "&8&lGENERATOR"
+      - "&7Generates items automatically"
+      - "&7Obtainable by upgrading generators"
+      - " "
+      - "&7Item: &bMoss Block"
+      - "&7Price: "
+      - "&7Drop item price: "
+      - " "
+      - "&b✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦"
+      - " "
+    dropitem: moss_block
+    dropitemPrice: 17500000
+  snow_block:
+    enabled: true
+    item: snow_block
+    name: "&f&lSnow Block &8ɢᴇɴᴇʀᴀᴛᴏʀ"
+    permission: ""
+    price: 515000000000
+    lore:
+      - " "
+      - "&b✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦"
+      - " "
+      - "&8&lGENERATOR"
+      - "&7Generates items automatically"
+      - "&7Obtainable by upgrading generators"
+      - " "
+      - "&7Item: &bSnow Block"
+      - "&7Price: "
+      - "&7Drop item price: "
+      - " "
+      - "&b✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦"
+      - " "
+    dropitem: snow_block
+    dropitemPrice: 47500000
+  ice:
+    enabled: true
+    item: ice
+    name: "&b&lIce &8ɢᴇɴᴇʀᴀᴛᴏʀ"
+    permission: ""
+    price: 845000000000
+    lore:
+      - " "
+      - "&b✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦"
+      - " "
+      - "&8&lGENERATOR"
+      - "&7Generates items automatically"
+      - "&7Obtainable by upgrading generators"
+      - " "
+      - "&7Item: &bIce"
+      - "&7Price: "
+      - "&7Drop item price: "
+      - " "
+      - "&b✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦"
+      - " "
+    dropitem: ice
+    dropitemPrice: 47500000
+  glass:
+    enabled: true
+    item: glass
+    name: "&f&lGlass &8ɢᴇɴᴇʀᴀᴛᴏʀ"
+    permission: ""
+    price: 1000000000000
+    lore:
+      - " "
+      - "&b✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦"
+      - " "
+      - "&8&lGENERATOR"
+      - "&7Generates items automatically"
+      - "&7Obtainable by upgrading generators"
+      - " "
+      - "&7Item: &bGlass"
+      - "&7Price: "
+      - "&7Drop item price: "
+      - " "
+      - "&b✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦"
+      - " "
+    dropitem: glass
+    dropitemPrice: 95500000
+  white_wool:
+    enabled: true
+    item: white_wool
+    name: "&f&lWhite Wool &8ɢᴇɴᴇʀᴀᴛᴏʀ"
+    permission: ""
+    price: 2750000000000
+    lore:
+      - " "
+      - "&b✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦"
+      - " "
+      - "&8&lGENERATOR"
+      - "&7Generates items automatically"
+      - "&7Obtainable by upgrading generators"
+      - " "
+      - "&7Item: &bWhite Wool"
+      - "&7Price: "
+      - "&7Drop item price: "
+      - " "
+      - "&b✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦"
+      - " "
+    dropitem: white_wool
+    dropitemPrice: 255500000
+  orange_wool:
+    enabled: true
+    item: orange_wool
+    name: "&6&lOrange Wool &8ɢᴇɴᴇʀᴀᴛᴏʀ"
+    permission: ""
+    price: 5750000000000
+    lore:
+      - " "
+      - "&b✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦"
+      - " "
+      - "&8&lGENERATOR"
+      - "&7Generates items automatically"
+      - "&7Obtainable by upgrading generators"
+      - " "
+      - "&7Item: &bOrange Wool"
+      - "&7Price: "
+      - "&7Drop item price: "
+      - " "
+      - "&b✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦"
+      - " "
+    dropitem: orange_wool
+    dropitemPrice: 455500000
+  magenta_wool:
+    enabled: true
+    item: magenta_wool
+    name: "&d&lMagenta Wool &8ɢᴇɴᴇʀᴀᴛᴏʀ"
+    permission: ""
+    price: 7750000000000
+    lore:
+      - " "
+      - "&b✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦"
+      - " "
+      - "&8&lGENERATOR"
+      - "&7Generates items automatically"
+      - "&7Obtainable by upgrading generators"
+      - " "
+      - "&7Item: &bMagenta Wool"
+      - "&7Price: "
+      - "&7Drop item price: "
+      - " "
+      - "&b✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦"
+      - " "
+    dropitem: magenta_wool
+    dropitemPrice: 755500000
+  light_blue_wool:
+    enabled: true
+    item: light_blue_wool
+    name: "&b&lLight Blue Wool &8ɢᴇɴᴇʀᴀᴛᴏʀ"
+    permission: ""
+    price: 10000000000000
+    lore:
+      - " "
+      - "&b✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦"
+      - " "
+      - "&8&lGENERATOR"
+      - "&7Generates items automatically"
+      - "&7Obtainable by upgrading generators"
+      - " "
+      - "&7Item: &bLight Blue Wool"
+      - "&7Price: "
+      - "&7Drop item price: "
+      - " "
+      - "&b✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦"
+      - " "
+    dropitem: light_blue_wool
+    dropitemPrice: 110000000
+  yellow_wool:
+    enabled: true
+    item: yellow_wool
+    name: "&e&lYellow Wool &8ɢᴇɴᴇʀᴀᴛᴏʀ"
+    permission: ""
+    price: 27500000000000
+    lore:
+      - " "
+      - "&b✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦"
+      - " "
+      - "&8&lGENERATOR"
+      - "&7Generates items automatically"
+      - "&7Obtainable by upgrading generators"
+      - " "
+      - "&7Item: &bYellow Wool"
+      - "&7Price: "
+      - "&7Drop item price: "
+      - " "
+      - "&b✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦"
+      - " "
+    dropitem: yellow_wool
+    dropitemPrice: 230000000
+  lime_wool:
+    enabled: true
+    item: lime_wool
+    name: "&a&lLime Wool &8ɢᴇɴᴇʀᴀᴛᴏʀ"
+    permission: ""
+    price: 57500000000000
+    lore:
+      - " "
+      - "&b✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦"
+      - " "
+      - "&8&lGENERATOR"
+      - "&7Generates items automatically"
+      - "&7Obtainable by upgrading generators"
+      - " "
+      - "&7Item: &bLime Wool"
+      - "&7Price: "
+      - "&7Drop item price: "
+      - " "
+      - "&b✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦"
+      - " "
+    dropitem: lime_wool
+    dropitemPrice: 430000000
+  green_wool:
+    enabled: true
+    item: green_wool
+    name: "&2&lGreen Wool &8ɢᴇɴᴇʀᴀᴛᴏʀ"
+    permission: ""
+    price: 87500000000000
+    lore:
+      - " "
+      - "&b✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦"
+      - " "
+      - "&8&lGENERATOR"
+      - "&7Generates items automatically"
+      - "&7Obtainable by upgrading generators"
+      - " "
+      - "&7Item: &bGreen Wool"
+      - "&7Price: "
+      - "&7Drop item price: "
+      - " "
+      - "&b✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦"
+      - " "
+    dropitem: green_wool
+    dropitemPrice: 975000000
+  cyan_wool:
+    enabled: true
+    item: cyan_wool
+    name: "&3&lCyan Wool &8ɢᴇɴᴇʀᴀᴛᴏʀ"
+    permission: ""
+    price: 127500000000000
+    lore:
+      - " "
+      - "&b✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦"
+      - " "
+      - "&8&lGENERATOR"
+      - "&7Generates items automatically"
+      - "&7Obtainable by upgrading generators"
+      - " "
+      - "&7Item: &bCyan Wool"
+      - "&7Price: "
+      - "&7Drop item price: "
+      - " "
+      - "&b✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦"
+      - " "
+    dropitem: cyan_wool
+    dropitemPrice: 1750000000
+  blue_wool:
+    enabled: true
+    item: blue_wool
+    name: "&9&lBlue Wool &8ɢᴇɴᴇʀᴀᴛᴏʀ"
+    permission: ""
+    price: 227500000000000
+    lore:
+      - " "
+      - "&b✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦"
+      - " "
+      - "&8&lGENERATOR"
+      - "&7Generates items automatically"
+      - "&7Obtainable by upgrading generators"
+      - " "
+      - "&7Item: &bBlue Wool"
+      - "&7Price: "
+      - "&7Drop item price: "
+      - " "
+      - "&b✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦"
+      - " "
+    dropitem: blue_wool
+    dropitemPrice: 2750000000
+  purple_wool:
+    enabled: true
+    item: purple_wool
+    name: "&5&lPurple Wool &8ɢᴇɴᴇʀᴀᴛᴏʀ"
+    permission: ""
+    price: 527500000000000
+    lore:
+      - " "
+      - "&b✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦"
+      - " "
+      - "&8&lGENERATOR"
+      - "&7Generates items automatically"
+      - "&7Obtainable by upgrading generators"
+      - " "
+      - "&7Item: &bPurple Wool"
+      - "&7Price: "
+      - "&7Drop item price: "
+      - " "
+      - "&b✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦"
+      - " "
+    dropitem: purple_wool
+    dropitemPrice: 4750000000
+  brown_wool:
+    enabled: true
+    item: brown_wool
+    name: "&6&lBrown Wool &8ɢᴇɴᴇʀᴀᴛᴏʀ"
+    permission: ""
+    price: 827500000000000
+    lore:
+      - " "
+      - "&b✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦"
+      - " "
+      - "&8&lGENERATOR"
+      - "&7Generates items automatically"
+      - "&7Obtainable by upgrading generators"
+      - " "
+      - "&7Item: &bBrown Wool"
+      - "&7Price: "
+      - "&7Drop item price: "
+      - " "
+      - "&b✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦"
+      - " "
+    dropitem: brown_wool
+    dropitemPrice: 7750000000
+  black_wool:
+    enabled: true
+    item: black_wool
+    name: "&8&lBlack Wool &8ɢᴇɴᴇʀᴀᴛᴏʀ"
+    permission: ""
+    price: 1327500000000000
+    lore:
+      - " "
+      - "&b✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦"
+      - " "
+      - "&8&lGENERATOR"
+      - "&7Generates items automatically"
+      - "&7Obtainable by upgrading generators"
+      - " "
+      - "&7Item: &bBlack Wool"
+      - "&7Price: "
+      - "&7Drop item price: "
+      - " "
+      - "&b✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦"
+      - " "
+    dropitem: black_wool
+    dropitemPrice: 12750000000
+  terracotta:
+    enabled: true
+    item: terracotta
+    name: "&6&lTerracotta &8ɢᴇɴᴇʀᴀᴛᴏʀ"
+    permission: ""
+    price: 2327500000000000
+    lore:
+      - " "
+      - "&b✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦"
+      - " "
+      - "&8&lGENERATOR"
+      - "&7Generates items automatically"
+      - "&7Obtainable by upgrading generators"
+      - " "
+      - "&7Item: &bTerracotta"
+      - "&7Price: "
+      - "&7Drop item price: "
+      - " "
+      - "&b✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦"
+      - " "
+    dropitem: terracotta
+    dropitemPrice: 32750000000
+  white_terracotta:
+    enabled: true
+    item: white_terracotta
+    name: "&f&lWhite Terracotta &8ɢᴇɴᴇʀᴀᴛᴏʀ"
+    permission: ""
+    price: 4327500000000000
+    lore:
+      - " "
+      - "&b✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦"
+      - " "
+      - "&8&lGENERATOR"
+      - "&7Generates items automatically"
+      - "&7Obtainable by upgrading generators"
+      - " "
+      - "&7Item: &bWhite Terracotta"
+      - "&7Price: "
+      - "&7Drop item price: "
+      - " "
+      - "&b✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦"
+      - " "
+    dropitem: white_terracotta
+    dropitemPrice: 52750000000
+  orange_terracotta:
+    enabled: true
+    item: orange_terracotta
+    name: "&6&lOrange Terracotta &8ɢᴇɴᴇʀᴀᴛᴏʀ"
+    permission: ""
+    price: 772500000000000
+    lore:
+      - " "
+      - "&b✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦"
+      - " "
+      - "&8&lGENERATOR"
+      - "&7Generates items automatically"
+      - "&7Obtainable by upgrading generators"
+      - " "
+      - "&7Item: &bOrange Terracotta"
+      - "&7Price: "
+      - "&7Drop item price: "
+      - " "
+      - "&b✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦"
+      - " "
+    dropitem: orange_terracotta
+    dropitemPrice: 97500000000
+  magenta_terracotta:
+    enabled: true
+    item: magenta_terracotta
+    name: "&d&lMagenta Terracotta &8ɢᴇɴᴇʀᴀᴛᴏʀ"
+    permission: ""
+    price: 1200000000000000
+    lore:
+      - " "
+      - "&b✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦"
+      - " "
+      - "&8&lGENERATOR"
+      - "&7Generates items automatically"
+      - "&7Obtainable by upgrading generators"
+      - " "
+      - "&7Item: &bMagenta Terracotta"
+      - "&7Price: "
+      - "&7Drop item price: "
+      - " "
+      - "&b✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦"
+      - " "
+    dropitem: magenta_terracotta
+    dropitemPrice: 175000000000
+  light_blue_terracotta:
+    enabled: true
+    item: light_blue_terracotta
+    name: "&b&lLight Blue Terracotta &8ɢᴇɴᴇʀᴀᴛᴏʀ"
+    permission: ""
+    price: 1800000000000000
+    lore:
+      - " "
+      - "&b✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦"
+      - " "
+      - "&8&lGENERATOR"
+      - "&7Generates items automatically"
+      - "&7Obtainable by upgrading generators"
+      - " "
+      - "&7Item: &bLight Blue Terracotta"
+      - "&7Price: "
+      - "&7Drop item price: "
+      - " "
+      - "&b✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦"
+      - " "
+    dropitem: light_blue_terracotta
+    dropitemPrice: 275000000000
+  yellow_terracotta:
+    enabled: true
+    item: yellow_terracotta
+    name: "&e&lYellow Terracotta &8ɢᴇɴᴇʀᴀᴛᴏʀ"
+    permission: ""
+    price: 3300000000000000
+    lore:
+      - " "
+      - "&b✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦"
+      - " "
+      - "&8&lGENERATOR"
+      - "&7Generates items automatically"
+      - "&7Obtainable by upgrading generators"
+      - " "
+      - "&7Item: &bYellow Terracotta"
+      - "&7Price: "
+      - "&7Drop item price: "
+      - " "
+      - "&b✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦"
+      - " "
+    dropitem: yellow_terracotta
+    dropitemPrice: 455000000000
+  lime_terracotta:
+    enabled: true
+    item: lime_terracotta
+    name: "&a&lLime Terracotta &8ɢᴇɴᴇʀᴀᴛᴏʀ"
+    permission: ""
+    price: 7500000000000000
+    lore:
+      - " "
+      - "&b✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦"
+      - " "
+      - "&8&lGENERATOR"
+      - "&7Generates items automatically"
+      - "&7Obtainable by upgrading generators"
+      - " "
+      - "&7Item: &bLime Terracotta"
+      - "&7Price: "
+      - "&7Drop item price: "
+      - " "
+      - "&b✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦"
+      - " "
+    dropitem: lime_terracotta
+    dropitemPrice: 955000000000
+  green_terracotta:
+    enabled: true
+    item: green_terracotta
+    name: "&2&lGreen Terracotta &8ɢᴇɴᴇʀᴀᴛᴏʀ"
+    permission: ""
+    price: 9550000000000000
+    lore:
+      - " "
+      - "&b✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦"
+      - " "
+      - "&8&lGENERATOR"
+      - "&7Generates items automatically"
+      - "&7Obtainable by upgrading generators"
+      - " "
+      - "&7Item: &bGreen Terracotta"
+      - "&7Price: "
+      - "&7Drop item price: "
+      - " "
+      - "&b✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦"
+      - " "
+    dropitem: green_terracotta
+    dropitemPrice: 1755000000000
+  cyan_terracotta:
+    enabled: true
+    item: cyan_terracotta
+    name: "&3&lCyan Terracotta &8ɢᴇɴᴇʀᴀᴛᴏʀ"
+    permission: ""
+    price: 17550000000000000
+    lore:
+      - " "
+      - "&b✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦"
+      - " "
+      - "&8&lGENERATOR"
+      - "&7Generates items automatically"
+      - "&7Obtainable by upgrading generators"
+      - " "
+      - "&7Item: &bCyan Terracotta"
+      - "&7Price: "
+      - "&7Drop item price: "
+      - " "
+      - "&b✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦"
+      - " "
+    dropitem: cyan_terracotta
+    dropitemPrice: 3755000000000
+  blue_terracotta:
+    enabled: true
+    item: blue_terracotta
+    name: "&9&lBlue Terracotta &8ɢᴇɴᴇʀᴀᴛᴏʀ"
+    permission: ""
+    price: 37550000000000000
+    lore:
+      - " "
+      - "&b✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦"
+      - " "
+      - "&8&lGENERATOR"
+      - "&7Generates items automatically"
+      - "&7Obtainable by upgrading generators"
+      - " "
+      - "&7Item: &bBlue Terracotta"
+      - "&7Price: "
+      - "&7Drop item price: "
+      - " "
+      - "&b✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦"
+      - " "
+    dropitem: blue_terracotta
+    dropitemPrice: 5755000000000
+  purple_terracotta:
+    enabled: true
+    item: purple_terracotta
+    name: "&5&lPurple Terracotta &8ɢᴇɴᴇʀᴀᴛᴏʀ"
+    permission: ""
+    price: 87550000000000000
+    lore:
+      - " "
+      - "&b✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦"
+      - " "
+      - "&8&lGENERATOR"
+      - "&7Generates items automatically"
+      - "&7Obtainable by upgrading generators"
+      - " "
+      - "&7Item: &bPurple Terracotta"
+      - "&7Price: "
+      - "&7Drop item price: "
+      - " "
+      - "&b✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦"
+      - " "
+    dropitem: purple_terracotta
+    dropitemPrice: 10000000000000
+  brown_terracotta:
+    enabled: true
+    item: brown_terracotta
+    name: "&6&lBrown Terracotta &8ɢᴇɴᴇʀᴀᴛᴏʀ"
+    permission: ""
+    price: 100000000000000000
+    lore:
+      - " "
+      - "&b✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦"
+      - " "
+      - "&8&lGENERATOR"
+      - "&7Generates items automatically"
+      - "&7Obtainable by upgrading generators"
+      - " "
+      - "&7Item: &bBrown Terracotta"
+      - "&7Price: "
+      - "&7Drop item price: "
+      - " "
+      - "&b✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦"
+      - " "
+    dropitem: brown_terracotta
+    dropitemPrice: 25000000000000
+  black_terracotta:
+    enabled: true
+    item: black_terracotta
+    name: "&8&lBlack Terracotta &8ɢᴇɴᴇʀᴀᴛᴏʀ"
+    permission: ""
+    price: 375000000000000000
+    lore:
+      - " "
+      - "&b✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦"
+      - " "
+      - "&8&lGENERATOR"
+      - "&7Generates items automatically"
+      - "&7Obtainable by upgrading generators"
+      - " "
+      - "&7Item: &bBlack Terracotta"
+      - "&7Price: "
+      - "&7Drop item price: "
+      - " "
+      - "&b✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦"
+      - " "
+    dropitem: black_terracotta
+    dropitemPrice: 50000000000000
+  op:
+    enabled: true
+    item: bedrock
+    name: "&4&lAdmin &8ɢᴇɴᴇʀᴀᴛᴏʀ"
+    permission: gens.admin
+    price: false
+    lore:
+      - " "
+      - "&b✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦"
+      - " "
+      - "&8&lGENERATOR"
+      - "&cThis gen is only for admins!"
+      - "&cOverpowered items included"
+      - " "
+      - "&7Item: &bBedrock"
+      - "&7Price: "
+      - " "
+      - "&b✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦"
+      - " "
+    dropitem: bedrock
+    dropitemPrice: 10

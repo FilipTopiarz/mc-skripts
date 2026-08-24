@@ -1,0 +1,62 @@
+on chat:
+    cancel event
+    set {_prefix} to the value of the placeholder "luckperms_primary_group_name" for the player
+    set {_suffix} to the value of the placeholder "luckperms_suffix" for the player
+    if {_suffix} is not set:
+        set {_suffix} to ""
+    if {_prefix} is not set:
+        set {_prefix} to ""
+
+    if {_prefix} contains "owner":
+        set {_prefix} to ":wellsetups_ranks_owner:"
+    else if {_prefix} contains "admin":
+        set {_prefix} to ":wellsetups_ranks_admin:"
+    else if {_prefix} contains "developer":
+        set {_prefix} to ":wellsetups_ranks_dev:"
+    else if {_prefix} contains "helper":
+        set {_prefix} to ":wellsetups_ranks_helper:"
+    else if {_prefix} contains "builder":
+        set {_prefix} to ":wellsetups_ranks_builder:"
+    else:
+        delete {_prefix}
+
+
+
+    set {_msg} to message
+
+    loop all players:
+        if {_msg} contains "%loop-value%":
+            replace all "%loop-value%" with "&b%loop-value%&f%{_suffix}%" in {_msg}
+
+    if {_msg} contains "[item]":
+        set {_item} to player's tool
+
+        if {_item} is air:
+            set {_replacement} to "&7(empty hand)"
+        else:
+            set {_name} to name of {_item}
+            if {_name} is not set:
+                set {_name} to {_item}
+
+            set {_replacement} to "&e%{_name}%"
+
+            if lore of {_item} is set:
+                loop lore of {_item}:
+                    add "%nl%%loop-value%" to {_replacement}
+
+
+        #replace all "[item]" in {_msg} with "&r[&a<ttp:&a%player's tool's tooltip%>%{_replacement}%&r]"
+        replace all "[item]" in {_msg} with "&r[<tooltip:%{_replacement}%>%{_name}%&r]"
+        #replace all "[item]" with "%player' tool%" in {_msg}
+        #<tooltip:&aLINE 1%nl%&bLINE 2%nl%&cLINE 3>%player%<reset>
+        #send message formatted " &a<ttp:&aHOVER MESSAGE>TEXT<reset>" to players
+
+
+    broadcast formatted "%{_prefix}% &7%{currentnick.%player%}% &7&l» &f%{_suffix}%%{_msg}%"
+
+
+on join:
+    set join message to ""
+
+on quit:
+    set quit message to ""

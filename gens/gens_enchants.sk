@@ -1,0 +1,33 @@
+command /enchantGen [<text>] [<number>] [<player>]:
+    trigger:
+        if arg-1 is "stattrackblocks":
+            if arg-2 is set:
+                loop arg-2 times:
+                    if arg-3 is set:
+                        give glowing name_tag named "&cBlock destroyed counter" with lore "&4&lTHIS IS CUSTOM ENCHANT" to arg-3
+                    else: 
+                        give glowing name_tag named "&cBlock destroyed counter" with lore "&4&lTHIS IS CUSTOM ENCHANT" to player
+            else:
+                give glowing name_tag named "&cBlock destroyed counter" with lore "&4&lTHIS IS CUSTOM ENCHANT" to player
+
+on tab complete of "/enchantGen":
+    set tab completion for position 1 to "stattrackblocks"
+
+on right click:
+    if type of player's tool is name_tag:
+        if name of player's tool is "&cBlock destroyed counter": # with lore "&4&lTHIS IS CUSTOM ENCHANT":
+            cancel event
+
+#   NEFUNGUJE FUUUUUUUUUUUCK
+
+#on inventory click:
+#    if name of event-item is "&cBlock destroyed counter":
+#        if {clicked::%player%} is not set:
+#            set {clicked::%player%} to true
+#            send "&aPrvní kliknutí – toggle nastaven." to player
+#        else:
+#            set {_item} to event-item
+#            add lore "&4Block counter" to {_item}
+#            set event-item to {_item} # vrátí zpět do slotu
+#            send "&cPřidán lore k itemu." to player
+#            delete {clicked::%player%}

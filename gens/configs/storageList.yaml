@@ -1,0 +1,30 @@
+storage:
+  basic:
+    enabled: true
+    item: chest
+    name: "&c&lStorage"
+    permission: ""
+    price: 20
+    lore:
+      - ""
+      - ""
+  stone:
+    enabled: true
+    item: barrel
+    name: "&aStone Storage"
+    permission: ""
+    price: 50
+    lore:
+      - ""
+      - ""
+  OP:
+    enabled: true
+    item: ender_chest
+    name: "&4&lAdmin Storage"
+    permission: "gens.admin"
+    price: false
+    lore:
+      - ""
+      - "&fThis storage is only for &cadmins!"
+      - "&fMost &bOverpowered storage &fin whole game!"
+      - ""
