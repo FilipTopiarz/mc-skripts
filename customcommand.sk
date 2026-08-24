@@ -1,0 +1,6 @@
+command /healer:
+    permission: healer.create
+    description: spawns a healer villager which can heal players
+    trigger:
+        loop blocks in radius 10 around player:
+            break loop-block using player's tool

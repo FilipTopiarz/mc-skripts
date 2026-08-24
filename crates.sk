@@ -1,0 +1,43 @@
+on load:
+    if {possibleCrates::*} is set:
+        delete {possibleCrates::*}
+    add "Crate1" to {possibleCrates::*}
+
+command /crates [<text>] [<text>] [<text>]:
+    permission: op
+    trigger:
+        if arg-1 is "create":
+            if arg-2 is set:
+                if arg-3 is set:
+                    loop {possibleCrates::*}:
+                        if loop-value is arg-2:
+                            add location of block below player to {crates::*}
+                            set {crates::%location of block below player%::type} to arg-2
+                            set {crates::%location of block below player%::name} to arg-3
+                            send "vytvoreno" to player
+        if arg-1 is "delete":
+            loop {crates::*}:
+                if {crates::%loop-value%::name} is arg-2:
+                    delete {crates::%loop-value%::*}
+                    remove loop-value from {crates::*}
+                    send "&bCrates &7| Crate &b%arg-2% &7byla smazána" to player
+        if arg-1 is "forcedeleteall":
+            delete {crates::*}
+        if arg-1 is "list":
+            loop {crates::*}:
+                send "%{crates::%loop-value%::name}% | Type: %{crates::%loop-value%::type}%" to player
+
+on right click:
+    if {crates::%event-block's location%::*} is set:
+        if {crates::%event-block's location%::type} is "Crate1": #Tady pak bude z pole
+            if name of player's tool is "&6&lGold key":
+                send "Muzes otevrit" to player
+                stop
+        push player backwards with speed 0.5
+        send "nemuzes otevrit" to player
+
+on break:
+    if {crates::%event-block's location%::*} is set:
+        if player has permission "op":
+            send "&bCrates &7| If you want to delete this crate use &b/crates delete %{crates::%event-block's location%::name}%" to player
+        cancel event

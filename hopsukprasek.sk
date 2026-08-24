@@ -1,0 +1,12 @@
+command /hopsukprasek:
+    trigger:
+        give sugar named "HopSukPrasek 3000" with lore "Tohle surely neni vijagra" to player
+
+on right click:
+    if display name of player's tool is "HopSukPrasek 3000":
+        remove 1 of event-item from player
+        apply potion of speed of tier 10 to player for 60 seconds
+        apply potion of nausea of tier 10 to player for 60 seconds
+        execute console command "/scale set %player% 1.5"
+        wait 60 seconds
+        execute console command "/scale clear %player%"

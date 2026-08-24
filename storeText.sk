@@ -1,0 +1,10 @@
+command /onStoreEvent [<offlineplayer>] [<number>]:
+    executable by: console
+    trigger:
+        set {_player} to arg-1
+        set {_flames} to arg-2
+        broadcast "§8§l══════════════════════════"
+        broadcast "§e:icons_bluefire: §a%{_player}% §fjust purchased §6%{_flames}% Flames!"
+        broadcast "§7💳 §fThank you for supporting the server!"
+        broadcast "§8§l══════════════════════════"
+

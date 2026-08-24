@@ -1,0 +1,39 @@
+
+on right click on oak_log:
+    cancel event
+    set {_block} to clicked block
+    set {_loc} to clicked block's location
+
+    # blok zmizí jen pro hráče (client-side)
+    make player see block at {_loc} as air
+
+    # spočítáme pozici o 1 blok výš
+    set {_loc2} to {_loc}
+    remove 2 from y-coordinate of {_loc2}
+
+    # spawn armor stand a nastavíme vlastnosti
+    spawn armor stand at {_loc2}
+    set {_stand} to last spawned entity
+    set visibility of {_stand} to false
+    set gravity of {_stand} to false
+    set helmet of {_stand} to oak_log
+
+
+    # uložíme si entitu pro rotaci
+    set {rotating::%player%} to {_stand}
+
+    # rotace po dobu 5 sekund (100 ticků)
+    loop 100 times:
+        wait 1 tick
+        if {rotating::%player%} is set:
+            set {_yaw} to yaw of {rotating::%player%}
+            add 5 to {_yaw}
+            if {_yaw} >= 360:
+                set {_yaw} to 0
+            set yaw of {rotating::%player%} to {_yaw}
+
+    # úklid a navrácení bloku
+    if {rotating::%player%} is set:
+        kill {rotating::%player%}
+        delete {rotating::%player%}
+    make player see block at {_loc} as oak_log

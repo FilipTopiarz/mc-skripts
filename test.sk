@@ -1,0 +1,10 @@
+on load:
+    set {testovanicko102::1} to true
+    set {testovanicko102::2} to false
+    set {testovanicko102::3} to true
+
+command /testovanicko:
+    trigger:
+        loop {testovanicko102::*}:
+            send "%loop-value%" to player
+        

@@ -1,0 +1,7 @@
+import:
+  dev.lone.itemsadder.api.ItemsAdder
+
+command /iaskript:
+  trigger:
+    set {testItem} to ItemsAdder.getCustomItem("hexcorecustom:chest1")
+    sender.getInventory().addItem({testItem})

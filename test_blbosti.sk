@@ -1,0 +1,118 @@
+#on join:
+#    if player's name is "IndoYTB":
+#        wait 3 second
+#        kick player
+
+
+on player move:
+    if {Freeze::%player%} is true:
+        if player's name is "Stacik64":
+            stop
+        #set {_victim} to loop-value
+        #if loop-value is true:
+        cancel event
+
+#on player move:
+#    if player's name is "IndoYTB":
+#        set {_pos} to player's location
+#        wait 2 second
+#        teleport player to {_pos}
+    
+            
+command /toggleFreeze [<player>]:
+    trigger:
+        if arg-1 is "Stacik64":
+            stop
+        if {Freeze::%arg-1%} is true:
+            set {Freeze::%arg-1%} to false
+        else:
+            set {Freeze::%arg-1%} to true
+
+command /checkFreeze [<player>]:
+    trigger:
+        if player's name is "IndoYTB" or "Stacik64":
+            send "Player %arg-1% is %{Freeze::%arg-1%}%"
+
+command /freezeWand [<player>]:
+    trigger:
+        if player's name is "IndoYTB" or "Stacik64":
+            give glowing slime_ball named "%arg-1%" with lore "&4&lADMIN ONLY" to player
+
+command /mjolnir:
+    trigger:
+        if player's name is "IndoYTB" or "Stacik64":
+            give glowing mace named "&bMjolnir" with lore "&4&lADMIN ONLY" and "&bGOD OF ELECTRICITY and all ELECTRICIANS" to player
+
+on right click with slime_ball:
+    set {_freezeTarget} to name of event-item
+    execute player command "toggleFreeze %{_freezeTarget}%"
+
+on right click with mace:
+    if name of event-item is "&bMjolnir":
+        push player upwards with speed 0.1
+        push player forwards with speed 100
+        show explosion at location of the player
+
+on left click with mace:
+    if name of event-item is "&bMjolnir":
+        set {_victim} to targeted entity
+        if {_victim} is set:
+            strike lightning at {_victim}'s location
+        else:
+            set {_target} to targeted block
+            strike lightning at {_target}'s location
+
+on damage:
+    if attacker's weapon is mace:
+        if attacker's weapon's name is "&bMjolnir":
+            strike lightning at victim's location
+
+
+command /sticky:
+    trigger:
+        if player's name is "IndoYTB" or "Stacik64":
+            give glowing lead named "&bSticky substance" with lore "&4&lADMIN ONLY" and "&bGIFT from biggest gooner in whole WORLD" to player
+
+on right click with lead:
+    if name of event-item is "&bSticky substance":
+        set {_victim} to targeted entity
+        if {_victim} is set:
+            #push {_victim} upwards with speed 0.1
+            pull {_victim} towards player with speed 0.5
+        
+
+command /batman:
+    trigger:
+        if player's name is "IndoYTB" or "Stacik64":
+            give glowing snowball named "&bBatman smokebomb" with lore "&4&lADMIN ONLY" and "&bGIFT FROM DARK BOI" to player
+
+on right click with snowball:
+    if name of event-item is "&bBatman smokebomb":
+        cancel event
+        if {cooldown::%player's uuid%} > 0:
+            stop
+        set {cooldown::%player's uuid%} to 5
+        show large smoke at location of the player
+        apply potion of invisibility of tier 10 to player for 5 seconds
+        if player's name is "IndoYTB":
+            apply potion of glowing of tier 10 to player for 5 seconds
+        #spawn bat at location of player
+        #set name of last spawned entity to "LilBetmen"
+        #add last spawned entity to {_bats::*}
+        #set {_Betmen} to last spawned entity
+        loop 100 times:
+            spawn bat at location of player
+            set name of last spawned entity to "LilBetmen"
+            add last spawned entity to {_bats::*}
+        wait 5 second
+        loop {_bats::*}:
+            kill loop-value
+
+every 1 second:
+    loop {cooldown::*}:
+        if {cooldown::%loop-index%} > 0:
+            set {cooldown::%loop-index%} to {cooldown::%loop-index%} - 1
+
+command /tell [<player>] [<text>]:
+    trigger:
+        broadcast "%arg-1%: %arg-2%"

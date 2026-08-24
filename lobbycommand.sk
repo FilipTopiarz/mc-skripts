@@ -1,0 +1,4 @@
+command /lobby:
+    aliases: /Lobby, /hub, /Hub
+    trigger:
+        connect player to "lobby"

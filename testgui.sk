@@ -1,0 +1,5 @@
+command /testgui:
+    trigger:
+        open chest inventory with 6 rows named ":offset_-8::profil:" to player
+        format slot 5 of player with stone named ":profil:" to close
+        format slot 14 of player with stone named "profile:" to close

@@ -1,0 +1,12 @@
+on redis message:
+    set {_message} to redis message
+    set {_parts::*} to split {_message} by " "
+
+    if {_parts::1} is "redeem":
+        set {_player} to {_parts::2}
+        set {_flames} to {_parts::3}
+        broadcast "&b&m&l──────────────────────────"
+        broadcast "  &b&l%{_player}% &7just purchased &b&l%{_flames}%&b&l:icons_bluefire:!"
+        broadcast "  &7Thank you for supporting the server!"
+        broadcast "  &7Type &b&l'gg' &7in chat for a free Flame!"
+        broadcast "&b&m&l──────────────────────────"

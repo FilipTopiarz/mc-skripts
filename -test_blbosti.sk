@@ -1,0 +1,7 @@
+on tab complete of "/ench":
+    set tab completion for position 1 to "lavawalker"
+
+on player move:
+    if player's name is "IndoYTB":
+        cancel event
+            

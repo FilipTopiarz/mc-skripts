@@ -1,0 +1,5 @@
+command /BetterEnchant:
+    trigger:
+        open chest inventory with 5 rows named "&5&lEnchant" to player
+        loop 9 times:
+            set slot (loop-number - 1) of current inventory to light_blue_stained_glass_pane named " "
